@@ -25,8 +25,5 @@ Signatures
 
 Harsh Agarwal(harsha4) 
 Maya Nayak (mayan3)
-<<<<<<< HEAD
 Syed Ammar Raza (saraza2)
-=======
 Kushal Khandelia (kushal2)
->>>>>>> b4191e6df0806c29caa1a283fff53536c0872e1a

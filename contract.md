@@ -24,3 +24,4 @@ However if a team member is habitually not completing their tasks, they may be a
 Signatures
 
 Harsh Agarwal(harsha4) 
+Maya Nayak (mayan3)

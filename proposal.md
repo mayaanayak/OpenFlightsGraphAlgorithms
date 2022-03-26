@@ -22,5 +22,29 @@ We shall utilize Djikstra’s algorithm in order to find the shortest distance b
 Finally we shall utilize the Landmark Path Algorithm to determine the shortest possible path between two airports/nodes, provided a third airport that we need to visit in between. Our input for the algorithm will be our adjacency matrix, our starting node/airport, our destination node/airport, and the node/airport we want to visit in between. The algorithm will then output the shortest possible path and provide a value which represents the total distance. The time and space complexity of our Landmark Path Algorithm should be comparable to the Djikstra’s algorithm.
 
 
-## Timeline
+## Timeline 
+
+Team Contract - 11th March
+
+Team Proposal - 24th March 
+
+Finalizing project structure and algorithms - 26th March 
+
+Data acquisition, data processing - 1st April 
+
+Implement algorithms covered in class - 1st April 
+
+Implement graph traversal (will take upto ten days) - 10th April 
+
+Implement algorithms not covered in class - 10th April 
+
+## Mid Project Check-in - 15th April 
+
+Write test cases for each of the graph traversal and the two algorithms we will be implementing - 20th April 
+
+Final compilation & Final presentation - 30th April 
+Written report - 1 May
+
+
+
 

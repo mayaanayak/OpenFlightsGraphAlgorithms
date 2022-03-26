@@ -4,6 +4,7 @@
 We will use the openflights dataset to collect data of flight routes and airports to construct a directed, weighted graph which shall be used for the following purposes:
 1) Find the shortest path between two given airports
 2) Find the shortest path between two given airports with a layover
+
 We shall be using the Depth First Search(DFS) algorithm to traverse the graph. In order to find the shortest path between two nodes, i.e. airports, we shall implement Dijkstra's algorithm along with the landmark path algorithm.
 
 ## Dataset Acquisition and Processing

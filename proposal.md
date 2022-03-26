@@ -1,5 +1,16 @@
+# Final Project Proposal
+
+## Leading Question
+
+
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).
 We will parse our comma-separated (CSV) data using the fstream library (delimiting with commas), converting the CSV into a malleable 2D vector format. The dataset denotes missing entries with a null character (“\N”); the dataset contains 3,354 such entries. These null characters do not occur in columns relevant to our analysis (airport name, airport ID, latitude, longitude), so they are not a concern. We will identify outliers with the IQR method, and we will drop egregious outliers from the dataset.
 
 Loading the data has a storage cost of O(n), where n is the number of input nodes (each node represents an airport). We will use a two-dimensional std::vector to store this. In finding the shortest path between two airports, must store the distances between each path. This will also have storage cost O(m) and will be accomplished using a two-dimensional std::vector. In finding the shortest path between two airports, we will use a min-heap to find the node with the minimum distance from a given node, which has storage cost O(n), where n is the number of input nodes.
+
+## Graph Algorithms
+
+
+## Timeline
+

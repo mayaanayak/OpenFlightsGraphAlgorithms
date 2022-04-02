@@ -25,10 +25,6 @@ We shall utilize Djikstra’s algorithm in order to find the shortest distance b
 
 Finally we shall utilize the Kruskal’s minimum spanning tree algorithm to create a graph with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the excess flights from one airport to the other, which the airline can get rid of, while ensuring that the airports are connected and still convenient for passengers.
 
-We will use Kosaraju's algorithm to determine whether both airport A and airport B are reachable from each other. As with DFS, our input will be the starting position ("airport A"), our desired position ("airport B"), and the adjacency matrix as inputs. It will return a boolean signifying if B is reachable from A. Our desired time complexity will be O(V+E), where V is the number of vertices and E is the number of edges in the graph. Our desired space complexity will be O(V).
-
-Our desired time complexity is O(V+E), where V is the number of vertices and E is the number edge
-
 ## Timeline 
 
 Team Contract - 11th March

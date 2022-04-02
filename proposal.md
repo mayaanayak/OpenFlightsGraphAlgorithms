@@ -4,6 +4,7 @@
 We will use the openflights dataset to collect data of flight routes and airports to construct a directed, weighted graph which shall be used for the following purposes:
 1) Find the shortest path between two given airports
 2) Find the minimal number of flights that would be needed while still ensuring that all the airports are connected.
+3) Determine which airports are directly reachable from others/the number of flights needed to get between two given airports
 
 We shall be using the Depth First Search(DFS) algorithm to traverse the graph. In order to find the shortest path between two nodes, i.e. airports, we shall implement Dijkstra's algorithm along with the Kruskal’s minimum spanning tree algorithm.
 
@@ -18,12 +19,15 @@ We will consider a spherical map in defining the distance between two coordinate
 
 In order to utilize our algorithms, we will first convert our data into an adjacency matrix in order to form our graph. The adjacency matrix will be a two dimensional vector in which the index of the rows and columns will represent our airports while the fields will not only tell us whether the airports are connected by an edge but, as the graph will be weighted, they will also tell the distance between each connected airport.
 
-We shall utilize Depth First Search (DFS) traversal to first determine whether a path exists between our two desired airports. The traversal will take our starting position, desired position, and the adjacency matrix as inputs. It will then return a boolean output which will tell us whether a path exists or not. Our desired time complexity will be O(V+E), where V is the number of vertices and E is the number of edges in the graph. Our desired space complexity will be O(V).
+We shall utilize Depth First Search (DFS) traversal to first determine whether a direct path exists between our two desired airports. The traversal will take our starting position, desired position, and the adjacency matrix as inputs. It will then return a boolean output which will tell us whether a path exists or not. Our desired time complexity will be O(V+E), where V is the number of vertices and E is the number of edges in the graph. Our desired space complexity will be O(V).
 
 We shall utilize Djikstra’s algorithm in order to find the shortest distance between two airports. The algorithm will take our adjacency matrix, a starting airport/node, and a destination airport/node as its inputs. The program will then output the shortest possible path you can take between two nodes and a value which represents the total distance. The time and space complexity of our algorithm will be O(V^2) where V is the number of vertices/airports. 
 
-Finally we shall utilize the Kruskal’s minimum spanning tree algorithm to create a graph with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the excess flights from one airport to the other, which the airline can get rid of, while ensuring that the airports are connected and still convenient for passengers
+Finally we shall utilize the Kruskal’s minimum spanning tree algorithm to create a graph with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the excess flights from one airport to the other, which the airline can get rid of, while ensuring that the airports are connected and still convenient for passengers.
 
+We will use Kosaraju's algorithm to determine whether an airport B is reachable from a given airport A. As with DFS, our input will be the starting position ("airport A"), our desired position ("airport B"), and the adjacency matrix as inputs. It will return a boolean signifying if B is reachable from A. Our desired time complexity will be O(V+E), where V is the number of vertices and E is the number of edges in the graph. Our desired space complexity will be O(V).
+
+Our desired time complexity is O(V+E), where V is the number of vertices and E is the number edge
 
 ## Timeline 
 

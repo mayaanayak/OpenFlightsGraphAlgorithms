@@ -5,7 +5,7 @@ We will use the openflights dataset to collect data of flight routes and airport
 1) Find the shortest path between two given airports
 2) Find the minimal number of flights that would be needed while still ensuring that all the airports are connected.
 
-We shall be using the Depth First Search(DFS) algorithm to traverse the graph. In order to find the shortest path between two nodes, i.e. airports, we shall implement Dijkstra's algorithm along with the landmark path algorithm.
+We shall be using the Depth First Search(DFS) algorithm to traverse the graph. In order to find the shortest path between two nodes, i.e. airports, we shall implement Dijkstra's algorithm along with the Kruskal’s minimum spanning tree algorithm.
 
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).
@@ -20,10 +20,7 @@ We shall utilize Depth First Search (DFS) traversal to first determine whether a
 
 We shall utilize Djikstra’s algorithm in order to find the shortest distance between two airports. The algorithm will take our adjacency matrix, a starting airport/node, and a destination airport/node as its inputs. The program will then output the shortest possible path you can take between two nodes and a value which represents the total distance. The time and space complexity of our algorithm will be O(V^2) where V is the number of vertices/airports. 
 
-
 Finally we shall utilize the Kruskal’s minimum spanning tree algorithm to create a graph with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the excess flights from one airport to the other, which the airline can get rid of, while ensuring that the airports are connected and still convenient for passengers
-
-Finally we shall utilize the Landmark Path Algorithm to determine the shortest possible path between two airports/nodes, provided a third airport that we need to visit in between. Our input for the algorithm will be our adjacency matrix, our starting node/airport, our destination node/airport, and the node/airport we want to visit in between. The algorithm will then output the shortest possible path and provide a value which represents the total distance. The time and space complexity of our Landmark Path Algorithm should be comparable to the Djikstra’s algorithm.
 
 
 ## Timeline 

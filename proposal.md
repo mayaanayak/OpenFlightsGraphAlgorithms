@@ -32,21 +32,21 @@ Team Proposal - 24th March
 
 Finalizing project structure and algorithms - 26th March 
 
-Data acquisition, data processing - 1st April 
+Data acquisition, data processing - 7thst April 
 
-Implement algorithms covered in class - 1st April 
+Implement algorithms covered in class - 12th April 
 
-Implement graph traversal (will take up to ten days) - 10th April 
+Implement graph traversal (will take up to ten days) - 22th April 
 
-Implement algorithms not covered in class - 10th April 
+Implement algorithms not covered in class - 28th April 
 
 ## Mid Project Check-in - 15th April 
 
-Write test cases for each of the graph traversal and the two algorithms we will be implementing - 20th April 
+Write test cases for each of the graph traversal and the two algorithms we will be implementing - 3rd May
 
-Final compilation & Final presentation - 30th April 
+Final compilation & Final presentation - 4th May
 
-Written report - 1 May
+Written report - 5th May
 
 
 

@@ -1,1 +1,2 @@
-
+**April 3rd**
+Our goal for this week was data processing and implementation of an algorithm covered in class. We did not accomplish these goals, as we did not account for the time it would take for us to fix our proposal and determine a viable alternative uncovered algorithm. Next week, we plan to construct our directed, unweighted graph, implement the graph algorithm covered in class, and begin implementing the graph traversal.

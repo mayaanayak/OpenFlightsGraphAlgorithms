@@ -1,12 +1,7 @@
 # Final Project Proposal
 
 ## Leading Question
-We will use the openflights dataset to collect data of flight routes and airports to construct a directed, weighted graph which shall be used for the following purposes:
-1) Find the shortest path between two given airports
-2) Find the minimal number of flights that would be needed while still ensuring that all the airports are connected.
-3) Determine which airports are directly reachable from others/the number of flights needed to get between two given airports
-
-We shall be using the Depth First Search(DFS) algorithm to traverse the graph. In order to find the shortest path between two nodes, i.e. airports, we shall implement Dijkstra's algorithm along with the Kruskal’s minimum spanning tree algorithm.
+If a traveler wants to fly into an airport B, then they would want to fly out of an airport A such that airport B is reachable from airport A. We will determine if airport B is reachable from airport A by implementing the union-find algorithm covered in class. Additionally, though they are unavoidable, most travelers dread layovers. Thus, we would like to determine the fewest number of flights necessary to travel from airport A to airport B (given that airport B is reachable from airport A) through a breadth-first search (BFS) traversal. While not wholly applicable to a practical scenario, we are also determining the shortest length path one could take to visit all of the airports in our dataset. To this end, we will implement Boruvka's algorithm. We will implement this traversal and algorithms by first constructing an undirected, weighted graph.
 
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).

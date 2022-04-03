@@ -1,7 +1,7 @@
 # Final Project Proposal
 
 ## Leading Question
-If a traveler wants to fly into an airport B, then they would want to fly out of an airport A such that airport B is reachable from airport A. We will determine if airport B is reachable from airport A by implementing the union-find algorithm covered in class. Additionally, though they are unavoidable, most travelers dread layovers. Thus, we would like to determine the fewest number of flights necessary to travel from airport A to airport B (given that airport B is reachable from airport A) through a breadth-first search (BFS) traversal. While not wholly applicable to a practical scenario, we are also determining the shortest length path one could take to visit all of the airports in our dataset. To this end, we will implement Boruvka's algorithm. We will implement these algorithms and traversal by first constructing an directed, weighted graph.
+If a traveler wants to fly into an airport B, then they would want to fly out of an airport A such that airport B is reachable from airport A. We will determine if airport B is reachable from airport A by implementing the union-find algorithm covered in class. Additionally, though they are unavoidable, most travelers dread layovers. Thus, we would like to determine the fewest number of flights necessary to travel from airport A to airport B (given that airport B is reachable from airport A) through a breadth-first search (BFS) traversal. While not wholly applicable to a practical scenario, we are also determining the shortest length path one could take to visit all of the airports in our dataset. To this end, we will implement Boruvka's algorithm. We will implement these algorithms and traversal by first constructing a directed, weighted graph.
 
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).
@@ -21,7 +21,8 @@ We shall utilize Breadth First Search (DFS) traversal to first determine the sho
 
 We shall utilize Djikstra’s algorithm in order to find the shortest distance between two airports. The algorithm will take our adjacency matrix, a starting airport/node, and a destination airport/node as its inputs. The program will then output the shortest possible path you can take between two nodes and a value which represents the total distance. The time and space complexity of our algorithm will be O(V^2) where V is the number of vertices/airports. 
 
-Finally we shall utilize the Kruskal’s minimum spanning tree algorithm to create a graph with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the excess flights from one airport to the other, which the airline can get rid of, while ensuring that the airports are connected and still convenient for passengers.
+Finally we shall utilize Boruvka's algorithm to create a minimum spanning tree with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the shortest length path one could take to visit all of the airports in our dataset.
+
 
 ## Timeline 
 

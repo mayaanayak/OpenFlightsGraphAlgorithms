@@ -35,7 +35,7 @@ Data acquisition, data processing - 1st April
 
 Implement algorithms covered in class - 1st April 
 
-Implement graph traversal (will take upto ten days) - 10th April 
+Implement graph traversal (will take up to ten days) - 10th April 
 
 Implement algorithms not covered in class - 10th April 
 
@@ -44,6 +44,7 @@ Implement algorithms not covered in class - 10th April
 Write test cases for each of the graph traversal and the two algorithms we will be implementing - 20th April 
 
 Final compilation & Final presentation - 30th April 
+
 Written report - 1 May
 
 

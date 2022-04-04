@@ -21,8 +21,7 @@ We shall utilize Breadth First Search (BFS) traversal to first determine the few
 
 We will use a union-find algorithm to find the shortest distance between two airports. The algorithm will take our adjacency matrix, a starting airport/node, and a destination airport/node as its inputs. The program will then output the shortest possible path you can take between two nodes and a value which represents the total distance. The time and space complexity of our algorithm will be O(V^2) where V is the number of vertices/airports. 
 
-Finally we shall utilize Boruvka's algorithm to create a minimum spanning tree with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and the algorithm shall output the shortest length path one could take to visit all of the airports in our dataset.
-
+Finally we shall utilize Boruvka's algorithm to create a minimum spanning tree with only the edges that are essential to keep the graph fully connected. Our input shall be the directed graph and shall begin by finding the minimum-weight edge incident to each vertex of the graph, and adding all of those edges to the forest. Then by repeating a similar process, it will reduce the number of trees within each connected component of the graph, to at most half of this former value, so after logarithmically many repetitions the process finishes. When it does, the set of edges it has added forms the minimum spanning forest. The minimum spanning forest, shall be our output, ie the shortest path that a passenger can take in order to visit all airports in our dataset. 
 
 ## Timeline 
 

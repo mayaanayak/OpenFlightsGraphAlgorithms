@@ -1,3 +1,14 @@
+### Regrade
+
+Partly Competent (80%)
+
+Although the proposal has listed two algorithms, the description doesn't seem to match their respective purposes.
+- Union-find (which is not in the [covered algorithm list](https://docs.google.com/document/d/10VL05FxUCQZMLb_jQfsfOMNR56ecxy0aIaqPH6KumBQ/edit)) can answer "is there a path between node A and node B?", but does not find the shortest possible path between them.
+- Secondly, it is true that Boruvka's algorithm will output a minimum spanning forest, but the paths inside each spanning tree do not represent "the shortest path that a passenger can take in order to visit all airports in our dataset." Take a look at Traveling Saleman Problem (TSP), Hamiltonian path/cycle, Eulerian path, and similar problems to see which one is the most relevant to your goal.
+
+Please make sure you understand what we should expect from these algorithms and feel free to confirm your selection with me again.
+
+
 ### Grade
 
 Incomplete (0%)
@@ -23,10 +34,10 @@ Algorithm
 - [x] One graph traversal (DFS)
   - [x] Input and output
   - [x] Run-time efficiency
-- [x] One algorithm in class (Dijkstra's)
+- [x] One algorithm in class ~~(Dijkstra's)~~ (Union find)
   - [x] Input and output
   - [x] Run-time efficiency
-- [ ] One algorithm not in class (Landmark Path Algorithm?)
+- [ ] One algorithm not in class ~~(Landmark Path Algorithm?)~~ (Boruvka's)
   - [ ] Input and output
   - [ ] Run-time efficiency
 

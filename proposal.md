@@ -1,7 +1,7 @@
 # Final Project Proposal
 
 ## Leading Question
-If a traveler wants to fly into an airport B, then they would want to fly out of an airport A such that airport B is reachable from airport A. We will determine if airport B is reachable from airport A by implementing the union-find algorithm not covered in class. We also want to determine the shortest path between airports A and B, for which we will use Dijkstra's algorithm covered in class. Additionally, though they are unavoidable, most travelers dread layovers. Thus, we would like to determine the fewest number of flights necessary to travel from airport A to airport B (given that airport B is reachable from airport A) through a breadth-first search (BFS) traversal. 
+If a traveler wants to fly into an airport B, then they would want to fly out of an airport A such that airport B is reachable from airport A. We will determine if airport B is reachable from airport A by implementing the union-find algorithm not covered in class. We also want to determine the shortest path between airports A and B, for which we will use Dijkstra's algorithm covered in class. We will also use a depth-first search (DFS) traversal to determine if 
 
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).

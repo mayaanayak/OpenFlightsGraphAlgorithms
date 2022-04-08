@@ -1,7 +1,7 @@
 # Final Project Proposal
 
 ## Leading Question
-In order to find the shortest distance between the origin, say airport A, and the destination, say airport B, we shall be implementing Dijkstra's algorithm. Further, we shall be using the PageRank algorithm, to display the list of airports, based on the order of importance. We will also use a depth-first search (DFS) traversal to determine if, given three airports A, B, and C, it is possible to visit one or more of A, B, or C more than once.
+Firstly, in order to determine if an airport A is reachable from airport B, we shall use the IDDFS algorithm. Further, Dijkstra's algorithm will determine the shortest distance between the origin, say airport A, and the destination, say airport B. We will also use a depth-first search (DFS) traversal to determine if, given three airports A, B, and C, it is possible to visit one or more of A, B, or C more than once.
 
 ## Dataset Acquisition and Processing
 We will employ the provided OpenFlights data (https://openflights.org/data.html) in completing this project. This data is in a comma-separated format, and it is composed of 14,110 records. We will be using a subset of this dataset (airports only).
@@ -17,7 +17,7 @@ To utilize our algorithms, we will first convert our data into an adjacency matr
 
 We will use Depth First Search (DFS) traversal to first determine if, given three airports A, B, and C, it is possible to visit one or more of A, B, or C more than once. The traversal will take our starting position, the other input airports, and the adjacency matrix as inputs. It will then return true or false depending on whether a cycle exists between the given airports. This will be done by detecting whether a cycle exists between the given nodes. Our desired time complexity will be O(V+E), where V is the number of vertices and E is the number of edges in the graph. Our desired space complexity will be O(V).
 
-We will use the PageRank algorithm to rank the airports in our dataset in order of their importance. The algorithm will take our adjacency matrix, and output a vector of airports in our dataset in order of their importance. The Big-O complexity of our algorithm will be O(V + E) where V is the number of vertices/airports and E is the number of edges in the graph.
+We will use the IDDFS algorithm to determine if airport B is reachable from airport A. The algorithm will take our directed graph, and the airports as inputs. It will output whether a route exists between the two given airport. The time complexity of our algorithm will be O(b\^d) where b shall be the branching factor of our graph and d shall be the depth of the desired airport in the graph. The space complexity shall be o(d)
 
 We will use Dijkstra's algorithm to find the fewest number of flights needed to travel between two airports. Our input will be our adjacency matrix, the source airport, and the target airport. It will return a list output indicating this shortest path. Our desired time complexity is O(V + E log V) and our desired space complexity is O(V), where E is the number of edges in the graph and V is the number of vertices/airports.
 ## Timeline 

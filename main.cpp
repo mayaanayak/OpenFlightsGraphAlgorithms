@@ -14,16 +14,17 @@ int main() {
     ofstream ofs;
     ofs.open("output.txt"); //output file
     if (ofs) {
-         parseData pdt;
+        parseData pdt;
         vector<vector<string>> vect = pdt.getDataVector("dataset/airports.dat");
+        ofs << vect[3069][6] << " " << vect[3069][7] << endl;
         // int count = 0;
-        for (auto v : vect) {
-            // ofs << count << " ";
-            for (auto str : v) {
-                ofs << str << " ";
-            }
-            ofs << "" << endl;
-        }
+        // for (auto v : vect) {
+        //     // ofs << count << " ";
+        //     for (auto str : v) {
+        //         ofs << str << " ";
+        //     }
+        //     ofs << "" << endl;
+        // }
         ofs.close();
     } else {
         cerr << "Error: file could not be opened" << endl;

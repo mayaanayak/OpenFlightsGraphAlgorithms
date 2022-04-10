@@ -8,3 +8,6 @@ Syed Ammar Raza - Wrote the intial graph algorithm section under propsal.md base
 
 
 **April 10th**
+Our goal for this week was to write an acceptable proposal, complete data processing, set up our project (e.g. create the Makefile), and begin implementing our covered algorithm and traversal. We did accomplish these goals. Next week, we plan to finish implementing our covered algorithm and traversal. The specific tasks each member accomplished are listed below:
+
+Maya Nayak - Worked on fixing the proposal and began implementing our covered algorithm (Dijkstra)

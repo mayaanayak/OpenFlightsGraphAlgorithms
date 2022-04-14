@@ -1,38 +1,43 @@
-#include "dijkstra.h"
+#pragma once
+#include <vector>
+#include <cstddef>
+#include <climits>
+#include <unordered_map>
+#include <queue>
+#include <functional>
 
-// We referenced the following pseudocode in implementing Dijkstra's algorithm:
-// https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+class Dijkstra {
+    public:
+        Dijkstra(int source_id);
+        void findFewestFlights();
+        std::vector<int> dist_;
 
-Dijkstra::Dijkstra(int source_id): source_id_(source_id), source_idx_(-1) {}
+    private:
+        std::vector<std::vector<int>> graph_;
+        int source_idx_;
+        int source_id_;
+        std::vector<int> prev_;
+        std::unordered_map<int, int> idx_to_id_;
+};
 
-void Dijkstra::findFewestFlights() {
-    // create vertex priority queue Q
-    std::priority_queue<int> q;
-    //dist[v] ← INFINITY
-    std::vector<int> temp_dist(INT_MAX, graph_.size());
-    dist_ = temp_dist;
-    // previous[v] := undefined
-    std::vector<int> temp_prev(-1, graph_.size());
-    prev_ = temp_prev;
-    // Find the index corresponding to the given airport ID
-    for (auto &i : idx_to_id_) {
-      if (i.second == source_id_) {
-         source_idx_ = i.first;
-         break;
+class Vertex {
+  public:
+    Vertex(int& idx, int& source_idx, std::vector<std::vector<int>>& graph): idx_(idx), source_idx_(source_idx), graph_(graph) {}
+    friend bool operator > (const Vertex& lhs, const Vertex& rhs);
+
+  private:
+    int idx_;
+    int source_idx_;
+    std::vector<std::vector<int>> graph_;
+};
+
+struct Compare
+{
+    bool operator()(const Vertex& lhs, const Vertex& rhs)
+    {
+      if (lhs > rhs) {
+        return true;
       }
+      return false;
     }
-    // dist[source] := 0
-    dist_[source_idx_] = 0;
-
-    // std::priority_queue<int, std::vector<int>, std::function<bool(int, int)>> q(Compare);
-    //std::priority_queue<Foo, std::vector<Foo>, std::function<bool(Foo, Foo)>> pq(Compare);
-    std::priority_queue<int, std::vector<int>, std::function<bool(const int &, const int &)>> q(Compare);
-
-    // for each vertex v in Graph.Vertices:
-    for (size_t i = 0; i < graph_.size(); i++) {
-        // Q.add_with_priority(v, dist[v])
-        q.push(graph_[i][0]);
-    }
-}
-
-
+};

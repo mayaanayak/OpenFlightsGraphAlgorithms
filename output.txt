@@ -1,1 +1,7 @@
--3.7102599144 128.089004517
+"Goroka Airport"
+"Goroka"
+"Papua New Guinea"
+"GKA"
+"AYGA"
+-6.081689834590001
+145.391998291

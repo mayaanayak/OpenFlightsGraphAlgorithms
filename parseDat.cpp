@@ -31,16 +31,7 @@ void parseData::vectorToTwoDimension() {
 
 //splits the string 
 vector<string> parseData::splitString(string str) {
-    // std::stringstream sstr(str);
     vector<string> v;
-    // while(sstr.good())
-    // {
-    //     string substr;
-    //     getline(sstr, substr, ',');
-    //     v.push_back(substr);
-    // }
-    // return v;
-
     string line; 
     std::stringstream sstr(str);
     while (getline(sstr, line)) {        // read full line

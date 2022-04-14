@@ -12,3 +12,9 @@ Our goal for this week was to write an acceptable proposal, complete data proces
 Maya Nayak - Worked on fixing the proposal and began implementing our covered algorithm (Dijkstra)
 
 Syed Ammar Raza - Worked on making the graph using a two dimensional vector and a map.
+
+
+**April 17th**
+Our goal for this week was to implement our covered algorithm. We have yet to extensively determine the algorithm's viability through testing, but we accomplished this goal.
+
+Maya Nayak - Implemented the covered algorithm (Dijkstra)

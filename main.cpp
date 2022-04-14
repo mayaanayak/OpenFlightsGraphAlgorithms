@@ -1,6 +1,7 @@
 #include "parseDat.h"
 #include <fstream>
 #include <cstdlib> 
+#include "makeGraph.h"
 
 using std::cout;
 using std::endl;
@@ -14,16 +15,10 @@ int main() {
     ofstream ofs;
     ofs.open("output.txt"); //output file
     if (ofs) {
-         parseData pdt;
-        vector<vector<string>> vect = pdt.getDataVector("dataset/airports.dat");
-        // int count = 0;
-        for (auto v : vect) {
-            // ofs << count << " ";
-            for (auto str : v) {
-                ofs << str << " ";
-            }
-            ofs << "" << endl;
-        }
+        makeGraph mkg;
+        //ofs << mkg.getAirports(5).airportID << endl;
+        ofs << mkg.getAirports(5).latitude << endl;
+        //ofs << mkg.getAirports(5).longitude << endl;
         ofs.close();
     } else {
         cerr << "Error: file could not be opened" << endl;
@@ -31,4 +26,5 @@ int main() {
     }
    
     return 0;
+    
 }

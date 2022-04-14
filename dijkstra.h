@@ -1,34 +1,30 @@
 #pragma once
+#pragma once
 #include <vector>
-#include <cstddef>
-#include <climits>
+#include <limits>
 #include <unordered_map>
 #include <queue>
-#include <functional>
 
 class Dijkstra {
     public:
         Dijkstra(int source_id);
         void findFewestFlights();
-        std::vector<int> dist_;
+        std::vector<double> dist_;
 
     private:
-        std::vector<std::vector<int>> graph_;
+        std::vector<std::vector<double>> graph_;
         int source_idx_;
         int source_id_;
         std::vector<int> prev_;
+        std::vector<bool> seen_;
         std::unordered_map<int, int> idx_to_id_;
 };
 
-class Vertex {
-  public:
-    Vertex(int& idx, int& source_idx, std::vector<std::vector<int>>& graph): idx_(idx), source_idx_(source_idx), graph_(graph) {}
-    friend bool operator > (const Vertex& lhs, const Vertex& rhs);
-
-  private:
-    int idx_;
-    int source_idx_;
-    std::vector<std::vector<int>> graph_;
+struct Vertex {
+  Vertex(int& idx, double& weight): idx_(idx), weight_(weight) {}
+  friend bool operator > (const Vertex& lhs, const Vertex& rhs);
+  int idx_;
+  double weight_;
 };
 
 struct Compare

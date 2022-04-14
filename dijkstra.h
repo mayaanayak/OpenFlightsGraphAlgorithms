@@ -13,16 +13,31 @@ class Dijkstra {
         std::vector<int> dist_;
 
     private:
-        int source_id_;
-        int source_idx_;
-        std::vector<int> prev_;
         std::vector<std::vector<int>> graph_;
+        int source_idx_;
+        int source_id_;
+        std::vector<int> prev_;
         std::unordered_map<int, int> idx_to_id_;
+};
 
-        bool Compare(const int& lhs, const int& rhs) {
-          if (graph_[lhs][source_idx_] > graph_[rhs][source_idx_]) {
-            return true;
-          }
-          return false;
-        }
+class Vertex {
+  public:
+    Vertex(int& idx, int& source_idx, std::vector<std::vector<int>>& graph): idx_(idx), source_idx_(source_idx), graph_(graph) {}
+    friend bool operator > (const Vertex& lhs, const Vertex& rhs);
+
+  private:
+    int idx_;
+    int source_idx_;
+    std::vector<std::vector<int>> graph_;
+};
+
+struct Compare
+{
+    bool operator()(const Vertex& lhs, const Vertex& rhs)
+    {
+      if (lhs > rhs) {
+        return true;
+      }
+      return false;
+    }
 };

@@ -39,4 +39,21 @@ void Dijkstra::findFewestFlights() {
         Vertex v(i, source_idx_, graph_);
         q.push(v);
     }
+
+    // while Q is not empty
+    while (!q.empty()) {
+      // u ← Q.extract_min()
+      Vertex u = q.top();
+      int min_idx = u.idx_;
+      // for each neighbor v of u
+      std::vector<int> neighbor_idxs;
+      for (size_t i = 0; i < graph_[min_idx].size(); i++) {
+        // alt ← dist[u] + Graph.Edges(u, v)
+        // if alt < dist[v]
+        // dist[v] ← alt
+        // prev[v] ← u
+        // Q.decrease_priority(v, alt)
+      }
+    }
+    //return dist, prev
 }

@@ -4,9 +4,7 @@
 // https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
 bool operator > (const Vertex& lhs, const Vertex& rhs) {
-  std::vector<std::vector<int>> graph = lhs.graph_;
-  int source_idx = lhs.source_idx_;
-  if (graph[lhs.idx_][source_idx] > graph[rhs.idx_][source_idx]) {
+  if (lhs.weight_ > rhs.weight_) {
     return true;
   }
   return false;
@@ -18,8 +16,10 @@ void Dijkstra::findFewestFlights() {
     // create vertex priority queue Q
     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
     //dist[v] ← INFINITY
-    std::vector<int> temp_dist(INT_MAX, graph_.size());
+    std::vector<double> temp_dist(std::numeric_limits<double>::max(), graph_.size());
     dist_ = temp_dist;
+    std::vector<bool> seen(false, graph_.size());
+
     // previous[v] := undefined
     std::vector<int> temp_prev(-1, graph_.size());
     prev_ = temp_prev;
@@ -36,24 +36,40 @@ void Dijkstra::findFewestFlights() {
     // for each vertex v in Graph.Vertices:
     for (int i = 0; i < graph_.size(); i++) {
       // Q.add_with_priority(v, dist[v])
-        Vertex v(i, source_idx_, graph_);
+        Vertex v(i, graph_[source_idx_][i]);
         q.push(v);
     }
 
     // while Q is not empty
     while (!q.empty()) {
+      bool extracted = false;
       // u ← Q.extract_min()
       Vertex u = q.top();
+      while (!extracted) {
+        if (!seen[u.idx_]) {
+          extracted = true;
+        }
+        q.pop();
+      }
+      seen[u.idx_] = true;
       int min_idx = u.idx_;
       // for each neighbor v of u
       std::vector<int> neighbor_idxs;
-      for (size_t i = 0; i < graph_[min_idx].size(); i++) {
+      for (int i = 0; i < graph_[min_idx].size(); i++) {
+        double distance = graph_[min_idx][i];
+        if (distance == 0) continue;
         // alt ← dist[u] + Graph.Edges(u, v)
+        double alt = dist_[u.idx_] + graph_[u.idx_][i];
         // if alt < dist[v]
-        // dist[v] ← alt
-        // prev[v] ← u
-        // Q.decrease_priority(v, alt)
+        if (alt < dist_[i]) {
+          // dist[v] ← alt
+          dist_[i] = alt;
+          //prev[v] ← u
+          prev_[i] = u.idx_;
+          Vertex v(i, alt);
+          // Q.decrease_priority(v, alt)
+          q.push(v);
+        }
       }
     }
-    //return dist, prev
 }

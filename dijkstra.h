@@ -6,11 +6,13 @@
 
 class Dijkstra {
     public:
-        Dijkstra(int source_id);
-        void findFewestFlights();
-        std::vector<double> dist_;
+        Dijkstra(int source_id, std::vector<std::vector<double>>& graph, std::unordered_map<int, int>& idx_to_id);
+        void runDijkstra();
+        std::vector<int> getPrev();
+        std::vector<double> getDist();
 
     private:
+        std::vector<double> dist_;
         std::vector<std::vector<double>> graph_;
         int source_idx_;
         int source_id_;

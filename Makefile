@@ -1,6 +1,7 @@
 #Executable Name
 EXENAME = final_project
 TEST = test
+DIJKSTRA = dijkstra
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
@@ -19,7 +20,7 @@ include test/make/make.mk
 include make/make.mk
 
 # Define Makefile Rules
-.PHONY: all test clean output_msg
+.PHONY: all test clean output_msg testdijkstra
 
 project : $(EXENAME)
 
@@ -27,6 +28,9 @@ output_msg: ; $(CLANG_VERSION_MSG)
 
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
+
+dijkstra: dijkstra.cpp tests/testdijkstra.cpp
+	$(LD) tests/testdijkstra.cpp dijkstra.cpp $(LDFLAGS) -o dijkstra
 
 test: output_msg parseDat.cpp main.cpp dijkstra.cpp
 	$(LD) parseDat.cpp main.cpp dijkstra.cpp$(LDFLAGS) -o test_output

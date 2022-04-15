@@ -10,9 +10,19 @@ bool operator > (const Vertex& lhs, const Vertex& rhs) {
   return false;
 }
 
-Dijkstra::Dijkstra(int source_id): source_idx_(-1),  source_id_(source_id) {}
+Dijkstra::Dijkstra(int source_id, std::vector<std::vector<double>>& graph, std::unordered_map<int, int>& idx_to_id): source_idx_(-1),  source_id_(source_id), graph_(graph), idx_to_id_(idx_to_id) {}
 
-void Dijkstra::findFewestFlights() {
+// Returns an array indicating the previous-hop nodes on the shortest path from source to the given vertex
+std::vector<int> Dijkstra::getPrev() {
+  return prev_;
+}
+
+// Returns an an array for which dist_[v] "is the shortest distance from source to v when traveling via visited nodes only, or infinity if no such path exists."
+std::vector<double> Dijkstra::getDist() {
+  return dist_;
+}
+
+void Dijkstra::runDijkstra() {
     // create vertex priority queue Q
     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
     //dist[v] ← INFINITY

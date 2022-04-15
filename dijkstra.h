@@ -20,7 +20,7 @@ class Dijkstra {
 };
 
 struct Vertex {
-  Vertex(int& idx, double& weight): idx_(idx), weight_(weight) {}
+  Vertex(int idx, double weight): idx_(idx), weight_(weight) {}
   friend bool operator > (const Vertex& lhs, const Vertex& rhs);
   int idx_;
   double weight_;

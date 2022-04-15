@@ -4,7 +4,7 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = parseDat.o main.o makeGraph.o
+OBJS = parseDat.o main.o makeGraph.o dijkstra.o
 
 # PageRank.o airport_graph.o Flight.o Djikstras.o BFS.o Landmark.o
 
@@ -28,18 +28,14 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-test: output_msg parseDat.cpp main.cpp
-	$(LD) parseDat.cpp main.cpp $(LDFLAGS) -o test_output
-=======
-test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp
-	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp $(LDFLAGS) -o test_output
->>>>>>> 6d43924604136715cdbd5b4172525e90383e039e
-=======
-test: output_msg parseDat.cpp main.cpp makeGraph.cpp
-	$(LD) parseDat.cpp main.cpp makeGraph.cpp $(LDFLAGS) -o test_output
->>>>>>> c430e94ca731ae883c2db3b3fedf6243e7bbbb81
+test: output_msg parseDat.cpp main.cpp dijkstra.cpp
+	$(LD) parseDat.cpp main.cpp dijkstra.cpp$(LDFLAGS) -o test_output
+
+test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp tests/testdijkstra.cpp dijkstra.cpp
+	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp tests/testdijkstra.cpp dijkstra.cpp $(LDFLAGS) -o test_output
+
+test: output_msg parseDat.cpp main.cpp makeGraph.cpp dijkstra.cpp
+	$(LD) parseDat.cpp main.cpp makeGraph.cpp dijkstra.cpp $(LDFLAGS) -o test_output
 
 clean:
 	-rm -f *.o $(EXENAME) test

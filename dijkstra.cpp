@@ -10,7 +10,7 @@ bool operator > (const Vertex& lhs, const Vertex& rhs) {
   return false;
 }
 
-Dijkstra::Dijkstra(int source_id): source_id_(source_id), source_idx_(-1) {}
+Dijkstra::Dijkstra(int source_id): source_idx_(-1),  source_id_(source_id) {}
 
 void Dijkstra::findFewestFlights() {
     // create vertex priority queue Q
@@ -34,7 +34,7 @@ void Dijkstra::findFewestFlights() {
     dist_[source_idx_] = 0;
     
     // for each vertex v in Graph.Vertices:
-    for (int i = 0; i < graph_.size(); i++) {
+    for (size_t i = 0; i < graph_.size(); i++) {
       // Q.add_with_priority(v, dist[v])
         Vertex v(i, graph_[source_idx_][i]);
         q.push(v);
@@ -55,7 +55,7 @@ void Dijkstra::findFewestFlights() {
       int min_idx = u.idx_;
       // for each neighbor v of u
       std::vector<int> neighbor_idxs;
-      for (int i = 0; i < graph_[min_idx].size(); i++) {
+      for (size_t i = 0; i < graph_[min_idx].size(); i++) {
         double distance = graph_[min_idx][i];
         if (distance == 0) continue;
         // alt ← dist[u] + Graph.Edges(u, v)

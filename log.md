@@ -17,4 +17,4 @@ Syed Ammar Raza - Worked on making the graph using a two dimensional vector and 
 **April 17th**
 Our goal for this week was to implement our covered algorithm. We have yet to extensively determine the algorithm's viability through testing, but we accomplished this goal.
 
-Maya Nayak - Implemented the covered algorithm (Dijkstra)
+Maya Nayak - Finished implementing dijkstra and writing dijkstra test cases.

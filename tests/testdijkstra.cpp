@@ -111,5 +111,37 @@ TEST_CASE("test_dijkstra_complex")
     std::vector<double> distance544 = dijkstra544.getDist();
     for (size_t i = 0; i < distance544.size(); i++) {
         REQUIRE(distance544[i] == solution544[i]);
-    }                                  
+    }
+
+    Dijkstra dijkstra968(968, graph, idx_to_id);
+    dijkstra968.runDijkstra();
+    std::vector<double> solution968{9.0, 10.0, 0.0, 11.0, 11.0, 2.0};
+    std::vector<double> distance968 = dijkstra968.getDist();
+    for (size_t i = 0; i < distance968.size(); i++) {
+        REQUIRE(distance968[i] == solution968[i]);
+    }
+
+    Dijkstra dijkstra213(213, graph, idx_to_id);
+    dijkstra213.runDijkstra();
+    std::vector<double> solution213{20.0, 15.0, 11.0, 0.0, 6.0, 13.0};
+    std::vector<double> distance213 = dijkstra213.getDist();
+    for (size_t i = 0; i < distance213.size(); i++) {
+        REQUIRE(distance213[i] == solution213[i]);
+    }
+
+    // Dijkstra dijkstra750(750, graph, idx_to_id);
+    // dijkstra750.runDijkstra();
+    // std::vector<double> solution750{20.0, 21.0, 11.0, 6.0, 0.0, 9.0};
+    // std::vector<double> distance750 = dijkstra750.getDist();
+    // for (size_t i = 0; i < distance750.size(); i++) {
+    //     REQUIRE(distance750[i] == solution750[i]);
+    // }
+
+    Dijkstra dijkstra64(64, graph, idx_to_id);
+    dijkstra64.runDijkstra();
+    std::vector<double> solution64{11.0, 12.0, 2.0, 13.0, 9.0, 0.0};
+    std::vector<double> distance64 = dijkstra64.getDist();
+    for (size_t i = 0; i < distance64.size(); i++) {
+        REQUIRE(distance64[i] == distance64[i]);
+    }                                     
 }

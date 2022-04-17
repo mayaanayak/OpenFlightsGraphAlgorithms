@@ -23,61 +23,58 @@ std::vector<double> Dijkstra::getDist() {
 }
 
 void Dijkstra::runDijkstra() {
-    // create vertex priority queue Q
     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
-    //dist[v] ← INFINITY
-    std::vector<double> temp_dist(std::numeric_limits<double>::max(), graph_.size());
-    dist_ = temp_dist;
-    std::vector<bool> seen(false, graph_.size());
+    std::vector<bool> seen;
 
-    // previous[v] := undefined
-    std::vector<int> temp_prev(-1, graph_.size());
-    prev_ = temp_prev;
+    for (size_t i = 0; i < graph_.size(); i++) {
+      dist_.push_back(std::numeric_limits<double>::max());
+      prev_.push_back(-1);
+      seen.push_back(false);
+    }
+
     // Find the index corresponding to the given airport ID
+    bool found = false;
     for (auto &i : idx_to_id_) {
       if (i.second == source_id_) {
          source_idx_ = i.first;
+         found = true;
          break;
       }
     }
-    // dist[source] := 0
-    dist_[source_idx_] = 0;
+    if (!found) {
+      throw std::invalid_argument("Invalid airport ID.");
+    }
     
-    // for each vertex v in Graph.Vertices:
+    dist_[source_idx_] = 0;
+
+    
     for (size_t i = 0; i < graph_.size(); i++) {
-      // Q.add_with_priority(v, dist[v])
         Vertex v(i, graph_[source_idx_][i]);
         q.push(v);
     }
 
-    // while Q is not empty
     while (!q.empty()) {
       bool extracted = false;
-      // u ← Q.extract_min()
       Vertex u = q.top();
-      while (!extracted) {
+      while (!extracted && !q.empty()) {
+        u = q.top();
         if (!seen[u.idx_]) {
           extracted = true;
+          seen[u.idx_] = true;
+          break;
         }
         q.pop();
       }
-      seen[u.idx_] = true;
       int min_idx = u.idx_;
-      // for each neighbor v of u
       std::vector<int> neighbor_idxs;
       for (size_t i = 0; i < graph_[min_idx].size(); i++) {
         double distance = graph_[min_idx][i];
         if (distance == 0) continue;
-        // alt ← dist[u] + Graph.Edges(u, v)
         double alt = dist_[u.idx_] + graph_[u.idx_][i];
-        // if alt < dist[v]
         if (alt < dist_[i]) {
-          // dist[v] ← alt
           dist_[i] = alt;
-          //prev[v] ← u
           prev_[i] = u.idx_;
           Vertex v(i, alt);
-          // Q.decrease_priority(v, alt)
           q.push(v);
         }
       }

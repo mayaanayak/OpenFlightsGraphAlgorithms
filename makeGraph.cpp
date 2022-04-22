@@ -164,3 +164,11 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID) {
     return false;
   }
 }
+
+map<int, int> makeGraph::getAirportIndices() {
+  return airport_index;
+}
+
+vector<vector<double>> makeGraph::getGraph() {
+  return graph;
+}

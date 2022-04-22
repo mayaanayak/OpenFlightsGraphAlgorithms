@@ -4,7 +4,7 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = parseDat.o main.o  
+OBJS = parseDat.o main.o  makeGraph.o
 
 # PageRank.o airport_graph.o Flight.o Djikstras.o BFS.o Landmark.o
 
@@ -27,8 +27,8 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp
-	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp $(LDFLAGS) -o test_output
+test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp
+	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp $(LDFLAGS) -o test_output
 
 clean:
 	-rm -f *.o $(EXENAME) test

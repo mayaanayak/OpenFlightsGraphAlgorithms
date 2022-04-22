@@ -128,7 +128,7 @@ vector<vector<double>> makeGraph::getGraph() {
 // takes the source airportID and destination airportID as parameters.
 void makeGraph::addEdge(int sourceAirID, int destAirID) {
   int sourceAirIdx = getAirportIndex(sourceAirID);
-  int destAirIdx = getAirportIndex(destAirIdx);
+  int destAirIdx = getAirportIndex(destAirID);
   if (sourceAirIdx == -1 || destAirIdx == -1) {
     throw invalid_argument(
         "One or both of these Airport IDs do not exist in Airports.dat");
@@ -148,7 +148,7 @@ void makeGraph::addEdge(int sourceAirID, int destAirID) {
 // sets the distance between them to zero.
 void makeGraph::deleteEdge(int sourceAirID, int destAirID) {
   int sourceAirIdx = getAirportIndex(sourceAirID);
-  int destAirIdx = getAirportIndex(destAirIdx);
+  int destAirIdx = getAirportIndex(destAirID);
   if (sourceAirIdx == -1 || destAirIdx == -1) {
     throw invalid_argument(
         "One or both of these Airport IDs do not exist in Airports.dat");
@@ -161,7 +161,7 @@ void makeGraph::deleteEdge(int sourceAirID, int destAirID) {
 // parameters. returns true if edge exists, false otherwise.
 bool makeGraph::edgeExists(int sourceAirID, int destAirID) {
   int sourceAirIdx = getAirportIndex(sourceAirID);
-  int destAirIdx = getAirportIndex(destAirIdx);
+  int destAirIdx = getAirportIndex(destAirID);
   if (sourceAirIdx == -1 || destAirIdx == -1) {
     throw invalid_argument(
         "One or both of these Airport IDs do not exist in Airports.dat");

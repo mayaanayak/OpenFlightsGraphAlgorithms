@@ -10,31 +10,11 @@
 using namespace std;
 
 int main() {
-
+  makeGraph mkg;
   // check if data works
-  ofstream ofs;
-  ofs.open("output.txt"); // output file
-  if (ofs) {
-   makeGraph mkg;
-    // ofs << mkg.getAirports(5).airportID << endl;
-    // ofs << mkg.getAirports(5).latitude << endl;
-    // ofs << mkg.getAirports(5).longitude << endl;
-    vector<vector<double>> vect = mkg.getGraph();
-
-    for (size_t i = 0; i < vect.size(); i++) {
-      for (size_t j = 0; j < vect.size(); j++) {
-    //     // cout<<vect[i][j] << "<--" <<endl;
-        ofs << vect[i][j] << " ";
-    //     // cout<<"here in" <<endl;
-      }
-    //   // cout<<""<<endl;
-      ofs << endl;
-     }
-    ofs.close();
-  } else {
-    cerr << "Error: file could not be opened" << endl;
-    exit(1);
-  }
+  mkg.populateGraph();
+  bool check = mkg.edgeExists(3043, 3131);
+  cout << check << endl;
 
   return 0;
 }

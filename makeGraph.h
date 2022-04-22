@@ -28,9 +28,9 @@ public:
   void addEdge(int sourceAirID, int destAirID);
   void deleteEdge(int sourceAirID, int destAirID);
   bool edgeExists(int sourceAirID, int destAirID);
+  void populateGraph();
 
 private:
-  void populateGraph();
   double distance(double lata, double latb, double longa, double longb);
   map<int, int> airport_index;
   vector<vector<double>> graph;

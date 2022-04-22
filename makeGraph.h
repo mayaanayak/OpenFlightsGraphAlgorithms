@@ -1,3 +1,5 @@
+#pragma once
+
 #include "parseDat.h"
 #include <cmath>
 #include <cstdlib>

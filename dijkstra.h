@@ -4,10 +4,11 @@
 #include <unordered_map>
 #include <queue>
 #include <iostream>
+#include <map>
 
 class Dijkstra {
     public:
-        Dijkstra(int source_id, std::vector<std::vector<double>>& graph, std::unordered_map<int, int>& idx_to_id);
+        Dijkstra(int source_id, std::vector<std::vector<double>> graph, std::map<int, int> idx_to_id);
         void runDijkstra();
         std::vector<int> getPrev();
         std::vector<double> getDist();
@@ -19,7 +20,7 @@ class Dijkstra {
         int source_id_;
         std::vector<int> prev_;
         std::vector<bool> seen_;
-        std::unordered_map<int, int> idx_to_id_;
+        std::map<int, int> idx_to_id_;
 };
 
 struct Vertex {

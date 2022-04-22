@@ -6,7 +6,7 @@
 
 TEST_CASE("test_priority_queue")
 {
-	std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
+    std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
     Vertex a(0, 10.4);
     Vertex b(0, 11.3);
     Vertex c(2, 5.2);

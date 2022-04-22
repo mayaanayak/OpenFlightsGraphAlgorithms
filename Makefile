@@ -1,10 +1,11 @@
 #Executable Name
 EXENAME = final_project
 TEST = test
+DIJKSTRA = dijkstra
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = parseDat.o main.o  makeGraph.o
+OBJS = parseDat.o main.o  makeGraph.o dijkstra.o
 
 # PageRank.o airport_graph.o Flight.o Djikstras.o BFS.o Landmark.o
 
@@ -18,7 +19,7 @@ LDFLAGS = -std=c++14 -stdlib=libc++ -lc++abi -lm
 include make/make.mk
 
 # Define Makefile Rules
-.PHONY: all test clean output_msg
+.PHONY: all test clean output_msg testdijkstra
 
 project : $(EXENAME)
 
@@ -27,8 +28,8 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp
-	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp $(LDFLAGS) -o test_output
+test: output_msg catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp dijkstra.cpp
+	$(LD) catch/catchmain.cpp tests/tests.cpp parseDat.cpp makeGraph.cpp dijkstra.cpp $(LDFLAGS) -o test_output
 
 clean:
 	-rm -f *.o $(EXENAME) test

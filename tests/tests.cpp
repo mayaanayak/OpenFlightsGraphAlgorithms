@@ -126,7 +126,7 @@ TEST_CASE("test_dijkstra_small")
                                              { 5.0, 0.0, 9.0, 2.0 },
                                              { 8.0, 9.0, 0.0, 6.0 },
                                              { 0.0, 2.0, 6.0, 0.0 }};
-    std::unordered_map<int, int> idx_to_id;
+    std::map<int, int> idx_to_id;
     // The airport at index 0 has ID 50
     idx_to_id[0] = 50;
     // The airport at index 1 has ID 20
@@ -178,7 +178,7 @@ TEST_CASE("test_dijkstra_complex")
                                              { 0.0,15.0,11.0, 0.0, 6.0, 0.0 },
                                              { 0.0, 0.0, 0.0, 6.0, 0.0, 9.0 },
                                              {14.0, 0.0, 2.0, 0.0, 9.0, 0.0 } }; 
-    std::unordered_map<int, int> idx_to_id;
+    std::map<int, int> idx_to_id;
     // The airport at index 0 has ID 473
     idx_to_id[0] = 473;
     // The airport at index 1 has ID 544

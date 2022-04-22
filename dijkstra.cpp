@@ -10,7 +10,7 @@ bool operator > (const Vertex& lhs, const Vertex& rhs) {
   return false;
 }
 
-Dijkstra::Dijkstra(int source_id, std::vector<std::vector<double>>& graph, std::unordered_map<int, int>& idx_to_id): source_idx_(-1),  source_id_(source_id), graph_(graph), idx_to_id_(idx_to_id) {}
+Dijkstra::Dijkstra(int source_id, std::vector<std::vector<double>> graph, std::map<int, int> idx_to_id): graph_(graph), source_idx_(-1), source_id_(source_id), idx_to_id_(idx_to_id) {}
 
 // Returns an array indicating the previous-hop nodes on the shortest path from source to the given vertex
 std::vector<int> Dijkstra::getPrev() {

@@ -129,13 +129,13 @@ TEST_CASE("test_dijkstra_complex")
         REQUIRE(distance213[i] == solution213[i]);
     }
 
-    // Dijkstra dijkstra750(750, graph, idx_to_id);
-    // dijkstra750.runDijkstra();
-    // std::vector<double> solution750{20.0, 21.0, 11.0, 6.0, 0.0, 9.0};
-    // std::vector<double> distance750 = dijkstra750.getDist();
-    // for (size_t i = 0; i < distance750.size(); i++) {
-    //     REQUIRE(distance750[i] == solution750[i]);
-    // }
+    Dijkstra dijkstra750(750, graph, idx_to_id);
+    dijkstra750.runDijkstra();
+    std::vector<double> solution750{23.0, 21.0, 11.0, 6.0, 0.0, 9.0};
+    std::vector<double> distance750 = dijkstra750.getDist();
+    for (size_t i = 0; i < distance750.size(); i++) {
+        REQUIRE(distance750[i] == solution750[i]);
+    }
 
     Dijkstra dijkstra64(64, graph, idx_to_id);
     dijkstra64.runDijkstra();

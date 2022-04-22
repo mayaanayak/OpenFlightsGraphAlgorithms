@@ -240,3 +240,12 @@ TEST_CASE("test_dijkstra_complex")
         REQUIRE(distance64[i] == distance64[i]);
     }                                     
 }
+
+TEST_CASE("full_graph") {
+    makeGraph airport_graph;
+    Dijkstra full(1, airport_graph.getGraph(), airport_graph.getAirportIndices());
+    full.runDijkstra();
+    std::vector<double> solution;
+    std::vector<double> output = full.getDist();
+    REQUIRE(solution == output);
+}

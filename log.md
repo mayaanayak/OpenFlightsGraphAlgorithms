@@ -18,3 +18,8 @@ Syed Ammar Raza - Worked on making the graph using a two dimensional vector and 
 Our goal for this week was to implement our covered algorithm. We have yet to extensively determine the algorithm's viability through testing, but we accomplished this goal.
 
 Maya Nayak - Finished implementing Dijkstra and writing Dijkstra test cases.
+
+**April 24th**
+Our goal for this week was to implement the graph traversal. We have not done this, and we plan to instead implement the graph traversal and uncovered algorithm simultaneously.
+
+Maya Nayak - Improve Dijkstra time complexity for finding new nodes from v to deg(v) based on project check-in feedback.

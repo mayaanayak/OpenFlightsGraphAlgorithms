@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
@@ -29,10 +31,12 @@ public:
   void deleteEdge(int sourceAirID, int destAirID);
   bool edgeExists(int sourceAirID, int destAirID);
   void populateGraph();
+  vector<int> getNeighbors(int index);
 
 private:
   double distance(double lata, double latb, double longa, double longb);
   map<int, int> airport_index;
+  map<int, vector<int>> neighbors;
   vector<vector<double>> graph;
   vector<Airport> airports;
 };

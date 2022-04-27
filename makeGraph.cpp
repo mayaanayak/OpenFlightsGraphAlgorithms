@@ -55,10 +55,11 @@ Airport makeGraph::getAirports(int key)
 int makeGraph::getAirportIndex(int key)
 {
   int index = 0;
+  auto it = airport_index.find(key);
   // might need to use iterator if error
-  if (airport_index.find(key) != airport_index.end())
+  if (it != airport_index.end())
   {
-    index = airport_index.find(key)->second;
+    index = it->second;
   }
   else
   {
@@ -230,9 +231,10 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID)
 vector<int> makeGraph::getNeighbors(int index)
 {
   vector<int> ans;
-  if (neighbors.find(index) != neighbors.end())
+  auto it = neighbors.find(index);
+  if (it != neighbors.end())
   {
-    ans = neighbors.find(index)->second;
+    ans = it->second;
     sort(ans.begin(), ans.end());
     return ans;
   }

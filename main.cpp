@@ -14,9 +14,10 @@ int main() {
   // check if data works
   mkg.populateGraph();
   vector<vector<double>> graph = mkg.getGraph();
-  int index = mkg.getAirportIndex(7458);
-  cout << index << endl;
-  cout << mkg.getAirportID(index) << endl;
+  vector<int> ans = mkg.getNeighbors(5000);
+  for (size_t i = 0; i < ans.size(); i++) {
+    cout << ans[i] << endl;
+  }
   
 
 

@@ -32,6 +32,7 @@ public:
   bool edgeExists(int sourceAirID, int destAirID);
   void populateGraph();
   vector<int> getNeighbors(int index);
+  int getAirportID(int index);
 
 private:
   double distance(double lata, double latb, double longa, double longb);

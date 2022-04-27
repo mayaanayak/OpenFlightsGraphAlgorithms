@@ -170,7 +170,6 @@ void makeGraph::addEdge(int sourceAirID, int destAirID)
   double destinAirLong = airports[destAirIdx].longitude;
   double km =
       distance(sourceAirLat, destinAirLat, sourceAirLong, destinAirLong);
-  // cout << "here part 2" << endl;
   if (graph[sourceAirIdx][destAirIdx] == km) {
     return;
   } else {
@@ -226,8 +225,8 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID)
   }
 }
 
-// parameter is the index of the graph whose neighbours you want
-// returns the sorted vector which contains the indexes in the graph of the neighbours of that node
+// parameter is the index of the graph whose neighbours you want.
+// returns the sorted vector which contains the indexes in the graph of the neighbours of that node.
 vector<int> makeGraph::getNeighbors(int index)
 {
   vector<int> ans;
@@ -240,5 +239,15 @@ vector<int> makeGraph::getNeighbors(int index)
   else
   {
     throw invalid_argument("The index is not valid");
+  }
+}
+
+//Returns the airportID if exists otherwise throws exception.
+//parameter is index in the graph.
+int makeGraph::getAirportID(int index) {
+  if (index >= 0 && index < airports.size()) {
+    return airports[index].airportID;
+  } else {
+    throw invalid_argument("Index out of bounds");
   }
 }

@@ -27,8 +27,8 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: output_msg parseDat.cpp main.cpp makeGraph.cpp
-	$(LD) parseDat.cpp main.cpp makeGraph.cpp $(LDFLAGS) -o test_output
+test: output_msg parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp
+	$(LD) parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp $(LDFLAGS) -o test_output
 
 clean:
 	-rm -f *.o $(EXENAME) test

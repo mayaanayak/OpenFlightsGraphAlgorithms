@@ -1,5 +1,6 @@
 #include "makeGraph.h"
 #include "parseDat.h"
+#include "iddfs.h"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -11,13 +12,10 @@ using namespace std;
 
 int main() {
   makeGraph mkg;
-  // check if data works
   mkg.populateGraph();
-  vector<vector<double>> graph = mkg.getGraph();
-  vector<int> ans = mkg.getNeighbors(5000);
-  for (size_t i = 0; i < ans.size(); i++) {
-    cout << ans[i] << endl;
-  }
+
+  mkg.getNeighbors(400);
+  mkg.getNeighbors(600);
   
 
 

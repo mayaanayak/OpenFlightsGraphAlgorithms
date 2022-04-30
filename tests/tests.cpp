@@ -286,3 +286,11 @@ TEST_CASE("dijkstra_unconnected") {
         REQUIRE(distance[i] == solution[i]);
     }
 }
+
+TEST_CASE("dijkstra_real") {
+    makeGraph mkg;
+    Dijkstra dijkstra(mkg);
+    dijkstra.runDijkstra(1);
+    std::vector<double> distance = dijkstra.getDist();
+    REQUIRE(distance.size() == 0);
+}

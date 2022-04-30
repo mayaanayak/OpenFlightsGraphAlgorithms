@@ -244,7 +244,6 @@ vector<int> makeGraph::getNeighbors(int index)
   if (it != neighbors.end())
   {
     ans = it->second;
-    sort(ans.begin(), ans.end());
     return ans;
   }
   else

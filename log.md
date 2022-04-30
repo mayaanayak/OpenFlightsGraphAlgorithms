@@ -23,3 +23,8 @@ Maya Nayak - Finished implementing Dijkstra and writing Dijkstra test cases.
 Our goal for this week was to implement the graph traversal. We have not done this, and we plan to instead implement the graph traversal and uncovered algorithm simultaneously.
 
 Maya Nayak - Improve Dijkstra time complexity for finding new nodes from v to deg(v) based on project check-in feedback.
+
+**May 1st**
+Our goal for this week was to implement IDDFS and the graph traversal, finish creating test cases, and implement the feedback that we received during the mid-project check-in.
+
+Maya Nayak - Changed Dijkstra to better use the makeGraph public interface, fixed Dijkstra edge cases, wrote test cases, implemented IDDFS with Ammar.

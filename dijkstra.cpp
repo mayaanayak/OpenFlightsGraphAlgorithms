@@ -32,7 +32,6 @@ void Dijkstra::runDijkstra(int source_id) {
       seen.push_back(false);
     }
 
-    // Find the index corresponding to the given airport ID
     int source_idx_ = mkg_.getAirportIndex(source_id);
     
     dist_[source_idx_] = 0;

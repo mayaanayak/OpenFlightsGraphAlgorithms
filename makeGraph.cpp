@@ -34,6 +34,8 @@ makeGraph::makeGraph()
   }
 }
 
+makeGraph::makeGraph(map<int, int> a, map<int, vector<int>> n, vector<vector<double>> g): airport_index(a), neighbors(n), graph(g) {}
+
 // key is the airportID.
 // gets the index of that airportID from the map.
 // return the Airport (containing latitude and longitude) from the Airports

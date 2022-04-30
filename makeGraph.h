@@ -24,6 +24,7 @@ struct Airport {
 class makeGraph {
 public:
   makeGraph();
+  makeGraph(map<int, int> a, map<int, vector<int>> n, vector<vector<double>> g);
   int getAirportIndex(int key);
   Airport getAirports(int key);
   vector<vector<double>> getGraph();

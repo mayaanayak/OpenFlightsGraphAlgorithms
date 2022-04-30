@@ -126,43 +126,48 @@ TEST_CASE("test_dijkstra_small")
                                              { 5.0, 0.0, 9.0, 2.0 },
                                              { 8.0, 9.0, 0.0, 6.0 },
                                              { 0.0, 2.0, 6.0, 0.0 }};
-    std::map<int, int> idx_to_id;
+    std::map<int, int> id_to_idx;
+    std::map<int, vector<int>> neighbors;
     // The airport at index 0 has ID 50
-    idx_to_id[0] = 50;
+    id_to_idx[50] = 0;
+    neighbors[0] = {1, 2};
     // The airport at index 1 has ID 20
-    idx_to_id[1] = 20;
+    id_to_idx[20] = 1;
+    neighbors[1] = {0, 2, 3};
     // The airport at index 2 has ID 15
-    idx_to_id[2] = 15;
+    id_to_idx[15] = 2;
+    neighbors[2] = {0, 1, 3};
     // The airport at index 3 has ID 32
-    idx_to_id[3] = 32;
+    id_to_idx[32] = 3;
+    neighbors[3] = {1, 2};
 
-    Dijkstra dijkstra50(50, graph, idx_to_id);
-    dijkstra50.runDijkstra();
-    std::vector<double> distance50 = dijkstra50.getDist();
+    makeGraph mkg(id_to_idx, neighbors, graph);
+
+    Dijkstra dijkstra(mkg);
+
+    dijkstra.runDijkstra(50);
+    std::vector<double> distance50 = dijkstra.getDist();
     std::vector<int> solution50{0, 5, 8, 7};
     for (size_t i = 0; i < distance50.size(); i++) {
         REQUIRE(distance50[i] == solution50[i]);
     }
 
-    Dijkstra dijkstra20(20, graph, idx_to_id);
-    dijkstra20.runDijkstra();
-    std::vector<double> distance20 = dijkstra20.getDist();
+    dijkstra.runDijkstra(20);
+    std::vector<double> distance20 = dijkstra.getDist();
     std::vector<double> solution20{5, 0, 8, 2};
     for (size_t i = 0; i < distance20.size(); i++) {
         REQUIRE(distance20[i] == solution20[i]);
     }
 
-    Dijkstra dijkstra15(15, graph, idx_to_id);
-    dijkstra15.runDijkstra();
-    std::vector<double> distance15 = dijkstra15.getDist();
+    dijkstra.runDijkstra(15);
+    std::vector<double> distance15 = dijkstra.getDist();
     std::vector<double> solution15{8, 8, 0, 6};
     for (size_t i = 0; i < distance15.size(); i++) {
         REQUIRE(distance15[i] == solution15[i]);
     }
 
-    Dijkstra dijkstra32(32, graph, idx_to_id);
-    dijkstra32.runDijkstra();
-    std::vector<double> distance32 = dijkstra32.getDist();
+    dijkstra.runDijkstra(32);
+    std::vector<double> distance32 = dijkstra.getDist();
     std::vector<double> solution32{7, 2, 6, 0};
     for (size_t i = 0; i < distance32.size(); i++) {
         REQUIRE(distance32[i] == solution32[i]);
@@ -178,74 +183,69 @@ TEST_CASE("test_dijkstra_complex")
                                              { 0.0,15.0,11.0, 0.0, 6.0, 0.0 },
                                              { 0.0, 0.0, 0.0, 6.0, 0.0, 9.0 },
                                              {14.0, 0.0, 2.0, 0.0, 9.0, 0.0 } }; 
-    std::map<int, int> idx_to_id;
+    std::map<int, int> id_to_idx;
+    std::map<int, std::vector<int>> neighbors;
     // The airport at index 0 has ID 473
-    idx_to_id[0] = 473;
+    id_to_idx[473] = 0;
+    neighbors[0] = {1, 2, 5};
     // The airport at index 1 has ID 544
-    idx_to_id[1] = 544;
+    id_to_idx[544] = 1;
+    neighbors[1] = {0, 2, 3};
     // The airport at index 2 has ID 968
-    idx_to_id[2] = 968;
+    id_to_idx[968] = 2;
+    neighbors[2] = {0, 1, 3, 5};
     // The airport at index 3 has ID 213
-    idx_to_id[3] = 213;
+    id_to_idx[213] = 3;
+    neighbors[3] = {1, 2, 4};
     // The airport at index 4 has ID 750
-    idx_to_id[4] = 750;
+    id_to_idx[750] = 4;
+    neighbors[4] = {3, 5};
     // The airport at index 5 has ID 64
-    idx_to_id[5] = 64;
+    id_to_idx[64] = 5;
+    neighbors[5] = {0, 2, 4};
 
-    Dijkstra dijkstra473(473, graph, idx_to_id);
-    dijkstra473.runDijkstra();
+    makeGraph mkg(id_to_idx, neighbors, graph);
+    Dijkstra dijkstra(mkg);
+
+    dijkstra.runDijkstra(473);
     std::vector<double> solution473{0.0, 7.0, 9.0, 20.0, 20.0, 11.0};
-    std::vector<double> distance473 = dijkstra473.getDist();
+    std::vector<double> distance473 = dijkstra.getDist();
     for (size_t i = 0; i < distance473.size(); i++) {
         REQUIRE(distance473[i] == solution473[i]);
     }  
 
-    Dijkstra dijkstra544(544, graph, idx_to_id);
-    dijkstra544.runDijkstra();
+    dijkstra.runDijkstra(544);
     std::vector<double> solution544{7.0, 0.0, 10.0, 15.0, 21.0, 12.0};
-    std::vector<double> distance544 = dijkstra544.getDist();
+    std::vector<double> distance544 = dijkstra.getDist();
     for (size_t i = 0; i < distance544.size(); i++) {
         REQUIRE(distance544[i] == solution544[i]);
     }
 
-    Dijkstra dijkstra968(968, graph, idx_to_id);
-    dijkstra968.runDijkstra();
+    dijkstra.runDijkstra(968);
     std::vector<double> solution968{9.0, 10.0, 0.0, 11.0, 11.0, 2.0};
-    std::vector<double> distance968 = dijkstra968.getDist();
+    std::vector<double> distance968 = dijkstra.getDist();
     for (size_t i = 0; i < distance968.size(); i++) {
         REQUIRE(distance968[i] == solution968[i]);
     }
 
-    Dijkstra dijkstra213(213, graph, idx_to_id);
-    dijkstra213.runDijkstra();
+    dijkstra.runDijkstra(213);
     std::vector<double> solution213{20.0, 15.0, 11.0, 0.0, 6.0, 13.0};
-    std::vector<double> distance213 = dijkstra213.getDist();
+    std::vector<double> distance213 = dijkstra.getDist();
     for (size_t i = 0; i < distance213.size(); i++) {
         REQUIRE(distance213[i] == solution213[i]);
     }
 
-    Dijkstra dijkstra750(750, graph, idx_to_id);
-    dijkstra750.runDijkstra();
+    dijkstra.runDijkstra(750);
     std::vector<double> solution750{23.0, 21.0, 11.0, 6.0, 0.0, 9.0};
-    std::vector<double> distance750 = dijkstra750.getDist();
+    std::vector<double> distance750 = dijkstra.getDist();
     for (size_t i = 0; i < distance750.size(); i++) {
         REQUIRE(distance750[i] == solution750[i]);
     }
 
-    Dijkstra dijkstra64(64, graph, idx_to_id);
-    dijkstra64.runDijkstra();
+    dijkstra.runDijkstra(64);
     std::vector<double> solution64{11.0, 12.0, 2.0, 13.0, 9.0, 0.0};
-    std::vector<double> distance64 = dijkstra64.getDist();
+    std::vector<double> distance64 = dijkstra.getDist();
     for (size_t i = 0; i < distance64.size(); i++) {
         REQUIRE(distance64[i] == distance64[i]);
     }                                     
 }
-
-// TEST_CASE("full_graph") {
-//     makeGraph airport_graph;
-//     Dijkstra full(1, airport_graph.getGraph(), airport_graph.getAirportIndices());
-//     full.runDijkstra();
-//     std::vector<double> solution;
-//     std::vector<double> output = full.getDist();
-//     REQUIRE(solution == output);
-// }

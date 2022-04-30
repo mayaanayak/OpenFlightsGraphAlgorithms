@@ -40,27 +40,22 @@ void Dijkstra::runDijkstra(int source_id) {
 
     // Finds the source index and sets the distance at that position to 0
     int source_idx_ = mkg_.getAirportIndex(source_id);
-    
     dist_[source_idx_] = 0;
 
     // Finds the neighbors of the source_idx and pushes them to the queue
     std::vector<int> neighbors = mkg_.getNeighbors(source_idx_);
 
     for (size_t i = 0; i < neighbors.size(); i++) {
-        Vertex v(neighbors[i], mkg_.routeDistance(source_idx_, neighbors[i]));
-        q.push(v);
+      Vertex v(neighbors[i], mkg_.routeDistance(source_idx_, neighbors[i]));
+      q.push(v);
     }
 
     // Updates the distances of neighbors of the source vertex 
     for (size_t i = 0; i < neighbors.size(); i++) {
-      double distance = mkg_.routeDistance(source_idx_, neighbors[i]);
-      double alt = dist_[source_idx_] + mkg_.routeDistance(source_idx_, neighbors[i]);
-      if (alt < dist_[neighbors[i]]) {
-        dist_[neighbors[i]] = alt;
-        prev_[neighbors[i]] = source_idx_;
-        Vertex v(neighbors[i], alt);
-        q.push(v);
-      }
+      dist_[neighbors[i]] = mkg_.routeDistance(source_idx_, neighbors[i]);
+      prev_[neighbors[i]] = source_idx_;
+      Vertex v(neighbors[i], dist_[neighbors[i]]);
+      q.push(v);
     }
 
     while (!q.empty()) {
@@ -84,7 +79,7 @@ void Dijkstra::runDijkstra(int source_id) {
         double alt = dist_[u.idx_] + mkg_.routeDistance(u.idx_, neighbors[i]);
         if (alt < dist_[neighbors[i]]) {
           dist_[neighbors[i]] = alt;
-          prev_[neighbors[i]] = u.idx_;
+          prev_[neighbors[i]] = min_idx;
           Vertex v(neighbors[i], alt);
           q.push(v);
         }

@@ -24,7 +24,7 @@ struct Airport {
 class makeGraph {
 public:
   makeGraph();
-  makeGraph(map<int, int> a, map<int, vector<int>> n, vector<vector<double>> g);
+  makeGraph(unordered_map<int, int> a, unordered_map<int, vector<int>> n, vector<vector<double>> g);
   int getAirportIndex(int key);
   Airport getAirports(int key);
   vector<vector<double>> getGraph();
@@ -38,8 +38,8 @@ public:
 
 private:
   double distance(double lata, double latb, double longa, double longb);
-  map<int, int> airport_index;
-  map<int, vector<int>> neighbors;
+  unordered_map<int, int> airport_index;
+  unordered_map<int, vector<int>> neighbors;
   vector<vector<double>> graph;
   vector<Airport> airports;
 };

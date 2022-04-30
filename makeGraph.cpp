@@ -34,7 +34,7 @@ makeGraph::makeGraph()
   }
 }
 
-makeGraph::makeGraph(map<int, int> a, map<int, vector<int>> n, vector<vector<double>> g): airport_index(a), neighbors(n), graph(g) {}
+makeGraph::makeGraph(unordered_map<int, int> a, unordered_map<int, vector<int>> n, vector<vector<double>> g): airport_index(a), neighbors(n), graph(g) {}
 
 // key is the airportID.
 // gets the index of that airportID from the map.

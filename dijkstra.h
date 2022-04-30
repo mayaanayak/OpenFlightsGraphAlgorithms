@@ -5,22 +5,21 @@
 #include <queue>
 #include <iostream>
 #include <map>
+#include "makeGraph.h"
 
 class Dijkstra {
     public:
-        Dijkstra(int source_id, std::vector<std::vector<double>> graph, std::map<int, int> idx_to_id);
-        void runDijkstra();
+        Dijkstra(makeGraph mkg);
+        void runDijkstra(int source_id);
         std::vector<int> getPrev();
         std::vector<double> getDist();
 
     private:
+        makeGraph mkg_;
         std::vector<double> dist_;
-        std::vector<std::vector<double>> graph_;
         int source_idx_;
-        int source_id_;
         std::vector<int> prev_;
         std::vector<bool> seen_;
-        std::map<int, int> idx_to_id_;
 };
 
 struct Vertex {

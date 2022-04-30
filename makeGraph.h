@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
@@ -22,19 +24,21 @@ struct Airport {
 class makeGraph {
 public:
   makeGraph();
-  void populateGraph();
   int getAirportIndex(int key);
   Airport getAirports(int key);
   vector<vector<double>> getGraph();
   void addEdge(int sourceAirID, int destAirID);
   void deleteEdge(int sourceAirID, int destAirID);
   bool edgeExists(int sourceAirID, int destAirID);
-  map<int, int> getAirportIndices();
-  vector<vector<double>> getGraph();
+  double routeDistance(int sourceAirID, int destAirID);
+  void populateGraph();
+  vector<int> getNeighbors(int index);
+  int getAirportID(int index);
 
 private:
   double distance(double lata, double latb, double longa, double longb);
   map<int, int> airport_index;
+  map<int, vector<int>> neighbors;
   vector<vector<double>> graph;
   vector<Airport> airports;
 };

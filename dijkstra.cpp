@@ -10,8 +10,6 @@ bool operator > (const Vertex& lhs, const Vertex& rhs) {
   return false;
 }
 
-Dijkstra::Dijkstra(int source_id, std::vector<std::vector<double>> graph, std::map<int, int> idx_to_id): graph_(graph), source_idx_(-1), source_id_(source_id), idx_to_id_(idx_to_id) {}
-
 // Returns an array indicating the previous-hop nodes on the shortest path from source to the given vertex
 std::vector<int> Dijkstra::getPrev() {
   return prev_;
@@ -22,34 +20,25 @@ std::vector<double> Dijkstra::getDist() {
   return dist_;
 }
 
-void Dijkstra::runDijkstra() {
+Dijkstra::Dijkstra(makeGraph mkg): mkg_(mkg) {}
+
+void Dijkstra::runDijkstra(int source_id) {
     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
     std::vector<bool> seen;
 
-    for (size_t i = 0; i < graph_.size(); i++) {
+    for (size_t i = 0; i < mkg_.getGraph().size(); i++) {
       dist_.push_back(std::numeric_limits<double>::max());
       prev_.push_back(-1);
       seen.push_back(false);
     }
 
     // Find the index corresponding to the given airport ID
-    bool found = false;
-    for (auto &i : idx_to_id_) {
-      if (i.second == source_id_) {
-         source_idx_ = i.first;
-         found = true;
-         break;
-      }
-    }
-    if (!found) {
-      throw std::invalid_argument("Invalid airport ID.");
-    }
+    int source_idx_ = mkg_.getAirportIndex(source_id);
     
     dist_[source_idx_] = 0;
 
-    
-    for (size_t i = 0; i < graph_.size(); i++) {
-        Vertex v(i, graph_[source_idx_][i]);
+    for (size_t i = 0; i < mkg_.getNeighbors(source_idx_).size(); i++) {
+        Vertex v(i, mkg_.edgeExists(source_idx_, i));
         q.push(v);
     }
 
@@ -67,10 +56,9 @@ void Dijkstra::runDijkstra() {
       }
       int min_idx = u.idx_;
       std::vector<int> neighbor_idxs;
-      for (size_t i = 0; i < graph_[min_idx].size(); i++) {
-        double distance = graph_[min_idx][i];
-        if (distance == 0) continue;
-        double alt = dist_[u.idx_] + graph_[u.idx_][i];
+      for (size_t i = 0; i < mkg_.getNeighbors(min_idx).size(); i++) {
+        double distance = mkg_.routeDistance(min_idx, i);
+        double alt = dist_[u.idx_] + mkg_.routeDistance(u.idx_, i);
         if (alt < dist_[i]) {
           dist_[i] = alt;
           prev_[i] = u.idx_;

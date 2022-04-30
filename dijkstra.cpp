@@ -23,6 +23,7 @@ std::vector<double> Dijkstra::getDist() {
 Dijkstra::Dijkstra(makeGraph mkg): mkg_(mkg) {}
 
 void Dijkstra::runDijkstra(int source_id) {
+    // Clears the distance, previous, and seen vectors in case dijkstra was already run.
     dist_.clear();
     prev_.clear();
     seen_.clear();
@@ -30,24 +31,27 @@ void Dijkstra::runDijkstra(int source_id) {
     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
     std::vector<bool> seen;
 
+    // Sets the distances for all of the vertices to infinity.
     for (size_t i = 0; i < mkg_.getGraph().size(); i++) {
       dist_.push_back(std::numeric_limits<double>::max());
       prev_.push_back(-1);
       seen.push_back(false);
     }
 
+    // Finds the source index and sets the distance at that position to 0
     int source_idx_ = mkg_.getAirportIndex(source_id);
     
     dist_[source_idx_] = 0;
 
+    // Finds the neighbors of the source_idx and pushes them to the queue
     std::vector<int> neighbors = mkg_.getNeighbors(source_idx_);
 
     for (size_t i = 0; i < neighbors.size(); i++) {
         Vertex v(neighbors[i], mkg_.routeDistance(source_idx_, neighbors[i]));
         q.push(v);
     }
-    
-    
+
+    // Updates the distances of neighbors of the source vertex 
     for (size_t i = 0; i < neighbors.size(); i++) {
       double distance = mkg_.routeDistance(source_idx_, neighbors[i]);
       double alt = dist_[source_idx_] + mkg_.routeDistance(source_idx_, neighbors[i]);
@@ -60,6 +64,7 @@ void Dijkstra::runDijkstra(int source_id) {
     }
 
     while (!q.empty()) {
+      // Extract the topmost node from the queue that has not already been seen (seen exists to implement lazy deletion)
       bool extracted = false;
       Vertex u = q.top();
       while (!extracted && !q.empty()) {
@@ -71,6 +76,7 @@ void Dijkstra::runDijkstra(int source_id) {
         }
         q.pop();
       }
+      // Update the distances as needed
       int min_idx = u.idx_;
       std::vector<int> neighbors = mkg_.getNeighbors(min_idx);
       for (size_t i = 0; i < neighbors.size(); i++) {

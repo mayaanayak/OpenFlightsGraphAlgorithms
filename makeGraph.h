@@ -31,7 +31,7 @@ public:
   void addEdge(int sourceAirID, int destAirID);
   void deleteEdge(int sourceAirID, int destAirID);
   bool edgeExists(int sourceAirID, int destAirID);
-  double routeDistance(int sourceAirID, int destAirID);
+  double routeDistance(int source_idx, int dest_idx);
   void populateGraph();
   vector<int> getNeighbors(int index);
   int getAirportID(int index);

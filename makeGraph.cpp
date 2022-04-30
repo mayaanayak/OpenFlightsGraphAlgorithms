@@ -165,7 +165,7 @@ void makeGraph::addEdge(int sourceAirID, int destAirID)
   if (sourceAirIdx == -1 || destAirIdx == -1)
   {
     throw invalid_argument(
-        "One or both of these Airport IDs do not exist in Airports.dat");
+        "addEdge: One or both of these Airport IDs do not exist in Airports.dat");
   }
   double sourceAirLat = airports[sourceAirIdx].latitude;
   double sourceAirLong = airports[sourceAirIdx].longitude;
@@ -193,7 +193,7 @@ void makeGraph::deleteEdge(int sourceAirID, int destAirID)
   if (sourceAirIdx == -1 || destAirIdx == -1)
   {
     throw invalid_argument(
-        "One or both of these Airport IDs do not exist in Airports.dat");
+        "deleteEdge: One or both of these Airport IDs do not exist in Airports.dat");
   }
   graph[sourceAirIdx][destAirIdx] = 0;
   vector<int> temp = neighbors[sourceAirIdx];
@@ -216,7 +216,7 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID)
   if (sourceAirIdx == -1 || destAirIdx == -1)
   {
     throw invalid_argument(
-        "One or both of these Airport IDs do not exist in Airports.dat");
+        "edgeExists: One or both of these Airport IDs do not exist in Airports.dat");
   }
   if (graph[sourceAirIdx][destAirIdx] > 0)
   {
@@ -228,15 +228,11 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID)
   }
 }
 
-double makeGraph::routeDistance(int sourceAirID, int destAirID) {
-  int sourceAirIdx = getAirportIndex(sourceAirID);
-  int destAirIdx = getAirportIndex(destAirID);
-  if (sourceAirIdx == -1 || destAirIdx == -1)
-  {
-    throw invalid_argument(
-        "One or both of these Airport IDs do not exist in Airports.dat");
+double makeGraph::routeDistance(int source_idx, int dest_idx) {
+  if (source_idx < 0 || dest_idx < 0 || source_idx >= static_cast<int>(graph.size()) || dest_idx >= static_cast<int>(graph.size())) {
+    throw invalid_argument("routeDistance: The index is not valid");
   }
-  return graph[sourceAirIdx][destAirIdx];
+  return graph[source_idx][dest_idx];
 }
 
 // parameter is the index of the graph whose neighbours you want.
@@ -253,16 +249,16 @@ vector<int> makeGraph::getNeighbors(int index)
   }
   else
   {
-    throw invalid_argument("The index is not valid");
+    throw invalid_argument("getNeighbors: The index is not valid");
   }
 }
 
 //Returns the airportID if exists otherwise throws exception.
 //parameter is index in the graph.
 int makeGraph::getAirportID(int index) {
-  if (index >= 0 && index < airports.size()) {
+  if (index >= 0 && index < static_cast<int>(airports.size())) {
     return airports[index].airportID;
   } else {
-    throw invalid_argument("Index out of bounds");
+    throw invalid_argument("getAirportID: Index out of bounds");
   }
 }

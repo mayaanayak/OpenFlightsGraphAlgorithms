@@ -32,7 +32,7 @@ void Dijkstra::runDijkstra(int source_id) {
     std::vector<bool> seen;
 
     // Sets the distances for all of the vertices to infinity.
-    for (size_t i = 0; i < mkg_.getGraph().size(); i++) {
+    for (size_t i = 0; i < mkg_.getGraphSize(); i++) {
       dist_.push_back(std::numeric_limits<double>::max());
       prev_.push_back(-1);
       seen.push_back(false);

@@ -287,10 +287,14 @@ TEST_CASE("dijkstra_unconnected") {
     }
 }
 
+// We used the map on https://openflights.org/# and https://openflights.org/html/apsearch to create the real test cases.
 TEST_CASE("dijkstra_real") {
     makeGraph mkg;
     Dijkstra dijkstra(mkg);
-    dijkstra.runDijkstra(1);
+    dijkstra.runDijkstra(3797);
     std::vector<double> distance = dijkstra.getDist();
-    REQUIRE(distance.size() == 0);
+    // The distance between JFK and itself is 0
+    REQUIRE(distance[mkg.getAirportIndex(3797)] == 0);
+    // The distance between JFK and EZE is 
+    REQUIRE(distance[mkg.getAirportIndex(3988)] == 15);
 }

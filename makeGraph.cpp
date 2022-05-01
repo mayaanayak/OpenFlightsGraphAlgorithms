@@ -151,7 +151,7 @@ double makeGraph::distance(double lata, double latb, double longa,
 }
 
 // populates the graph and then returns it.
-vector<vector<double>> makeGraph::getGraph()
+vector<vector<double>>& makeGraph::getGraph()
 {
   return graph;
 }
@@ -260,4 +260,8 @@ int makeGraph::getAirportID(int index) {
   } else {
     throw invalid_argument("getAirportID: Index out of bounds");
   }
+}
+
+size_t makeGraph::getGraphSize() {
+  return graph.size();
 }

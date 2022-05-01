@@ -27,7 +27,7 @@ public:
   makeGraph(unordered_map<int, int> a, unordered_map<int, vector<int>> n, vector<vector<double>> g);
   int getAirportIndex(int key);
   Airport getAirports(int key);
-  vector<vector<double>> getGraph();
+  vector<vector<double>>& getGraph();
   void addEdge(int sourceAirID, int destAirID);
   void deleteEdge(int sourceAirID, int destAirID);
   bool edgeExists(int sourceAirID, int destAirID);
@@ -35,6 +35,7 @@ public:
   void populateGraph();
   vector<int> getNeighbors(int index);
   int getAirportID(int index);
+  size_t getGraphSize();
 
 private:
   double distance(double lata, double latb, double longa, double longb);

@@ -4,6 +4,7 @@
 #include "../catch/catch.hpp"
 #include "../dijkstra.h"
 #include "../makeGraph.h"
+#include "../DFS.h"
 #include <typeinfo>
 #include <math.h>       /* exp */
 #include <cmath>
@@ -297,4 +298,30 @@ TEST_CASE("dijkstra_real") {
     REQUIRE(distance[mkg.getAirportIndex(3797)] == 0);
     // The distance between JFK and EZE is 
     REQUIRE(distance[mkg.getAirportIndex(3988)] == 15);
+}
+
+TEST_CASE("DFS, round trip exists between three airports") {
+    DFS dfs;
+    vector<string> vect = {"Chhatrapati Shivaji International Airport", "Netaji Subhash Chandra Bose International Airport", "Indira Gandhi International Airport"};
+    bool det = dfs.detect_cycle(vect);
+    REQUIRE(det == true);
+}
+
+TEST_CASE("DFS, round trip does not exist between three airports") {
+    DFS dfs;
+    vector<string> vect = {"Hao Airport", "Netaji Subhash Chandra Bose International Airport", "Nouméa Magenta Airport"};
+    bool det = dfs.detect_cycle(vect);
+    REQUIRE(det == false);
+}
+
+TEST_CASE("DFS< round trip 10 airports") {
+    DFS dfs;
+    vector<string> vect = {"Chhatrapati Shivaji International Airport", 
+    "Netaji Subhash Chandra Bose International Airport", 
+    "Indira Gandhi International Airport", 
+    "Kempegowda International Airport", "Chennai International Airport", 
+    "Sardar Vallabhbhai Patel International Airport", 
+    "Goroka Airport", "Madang Airport", "Nadzab Airport"};
+    bool det = dfs.detect_cycle(vect);
+    REQUIRE(det == true);
 }

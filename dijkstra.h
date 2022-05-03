@@ -17,7 +17,7 @@ class Dijkstra {
     private:
         makeGraph mkg_;
         std::vector<double> dist_;
-        int source_idx_;
+        // int source_idx_;
         std::vector<int> prev_;
         std::vector<bool> seen_;
 };

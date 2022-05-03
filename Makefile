@@ -4,9 +4,7 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = parseDat.o main.o makeGraph.o
-
-# PageRank.o airport_graph.o Flight.o Djikstras.o BFS.o Landmark.o
+OBJS = parseDat.o main.o makeGraph.o iddfs.o dijkstra.o DFS.o 
 
 # Compilation Flags
 CXX = clang++
@@ -15,7 +13,7 @@ LD = clang++
 LDFLAGS = -std=c++14 -stdlib=libc++ -lc++abi -lm
 
 # Custom Clang Enforcement
-include test/make/make.mk
+include cs225/make/make.mk
 
 # Define Makefile Rules
 .PHONY: all test clean output_msg
@@ -27,8 +25,8 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: output_msg parseDat.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp
-	$(LD) parseDat.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp $(LDFLAGS) -o test_output
+test: output_msg parseDat.o makeGraph.o iddfs.o dijkstra.o tests/tests.o
+	$(LD) parseDat.o makeGraph.o iddfs.o dijkstra.o tests/tests.o $(LDFLAGS) -o test_output
 
 # test: output_msg parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp
 # 	$(LD) parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp $(LDFLAGS) -o test_output

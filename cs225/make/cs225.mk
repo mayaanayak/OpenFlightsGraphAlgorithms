@@ -15,7 +15,7 @@ LD = clang++
 OBJS_DIR = .objs
 
 # Add standard CS 225 object files
-OBJS += cs225/HSLAPixel.o cs225/PNG.o cs225/lodepng/lodepng.o
+OBJS += cs225/HSLAPixel.o cs225/PNG.o #cs225/lodepng/lodepng.o
 
 # -MMD and -MP asks clang++ to generate a .d file listing the headers used in the source code for use in the Make process.
 #   -MMD: "Write a depfile containing user headers"
@@ -38,7 +38,7 @@ all: $(EXE)
 # Rule for linking the final executable:
 # - $(EXE) depends on all object files in $(OBJS)
 # - `patsubst` function adds the directory name $(OBJS_DIR) before every object file
-$(EXE): output_msg $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS))
+$(EXE): $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS))
 	$(LD) $(filter-out $<, $^) $(LDFLAGS) -o $@
 
 # Ensure .objs/ exists:
@@ -46,14 +46,14 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(OBJS_DIR)/cs225
 	@mkdir -p $(OBJS_DIR)/cs225/catch
-	@mkdir -p $(OBJS_DIR)/cs225/lodepng
+#	@mkdir -p $(OBJS_DIR)/cs225/lodepng
 	@mkdir -p $(OBJS_DIR)/tests
 # mp_traversal specific
-	@mkdir -p $(OBJS_DIR)/imageTraversal
-	@mkdir -p $(OBJS_DIR)/colorPicker
+#	@mkdir -p $(OBJS_DIR)/imageTraversal
+#	@mkdir -p $(OBJS_DIR)/colorPicker
 # mp_mosaic specific
-	@mkdir -p $(OBJS_DIR)/cs225/ColorSpace
-	@mkdir -p $(OBJS_DIR)/util
+#	@mkdir -p $(OBJS_DIR)/cs225/ColorSpace
+#	@mkdir -p $(OBJS_DIR)/util
 
 # Rules for compiling source code.
 # - Every object file is required by $(EXE)
@@ -70,15 +70,15 @@ CPP_TEST = $(wildcard tests/*.cpp)
 CPP_TEST += cs225/catch/catchmain.cpp
 OBJS_TEST += $(CPP_TEST:.cpp=.o)
 
-$(TEST): output_msg $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
-	$(LD) $(filter-out $<, $^) $(LDFLAGS) -o $@
+# $(TEST): $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
+# 	$(LD) $(filter-out $<, $^) $(LDFLAGS) -o $@
 
 # Additional dependencies for object files are included in the clang++
 # generated .d files (from $(DEPFILE_FLAGS)):
 -include $(OBJS_DIR)/*.d
 -include $(OBJS_DIR)/cs225/*.d
 -include $(OBJS_DIR)/cs225/catch/*.d
--include $(OBJS_DIR)/cs225/lodepng/*.d
+#-include $(OBJS_DIR)/cs225/lodepng/*.d
 -include $(OBJS_DIR)/tests/*.d
 
 # Custom Clang version enforcement Makefile rule:
@@ -98,7 +98,7 @@ CLANG_VERSION_MSG = $(warning $(ccyellow) Looks like you are not on EWS. Be sure
 endif
 endif
 
-output_msg: ; $(CLANG_VERSION_MSG)
+# output_msg: ; $(CLANG_VERSION_MSG)
 
 # Standard C++ Makefile rules:
 clean:

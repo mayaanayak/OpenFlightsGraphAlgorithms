@@ -25,7 +25,7 @@ makeGraph::makeGraph()
   for (size_t i = 0; i < dataVector.size(); i++)
   {
     airport_index.insert(pair<int, int>((stoi(dataVector[i][0])), i));
-    neighbors.insert(pair<int, int>(i, {}));
+    neighbors.insert(pair<int, vector<int>>(i, {}));
     Airport temp;
     temp.airportID = std::stoi(dataVector[i][0]);
     temp.latitude = std::stold(dataVector[i][6]);

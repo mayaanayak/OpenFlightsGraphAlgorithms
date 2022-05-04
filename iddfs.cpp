@@ -2,20 +2,20 @@
 
 using namespace std;
 
-bool IDDFS(int start, int dest, int max_depth) {
-    makeGraph mkg;
-    mkg.populateGraph();
-    int startIdx = mkg.getAirportIndex(start);
-    int destIdx = mkg.getAirportIndex(dest);
+IDDFS::IDDFS(makeGraph mkg): mkg_(mkg) {}
+
+bool IDDFS::runIDDFS(int start, int dest, int max_depth) {
+    int startIdx = mkg_.getAirportIndex(start);
+    int destIdx = mkg_.getAirportIndex(dest);
     for (int i = 0; i <= max_depth; i++) {
-        if (DLS(startIdx, destIdx, i, mkg)) {
+        if (DLS(startIdx, destIdx, i, mkg_)) {
             return true;
         }
     }
     return false;
 }
 
-bool DLS(int startIdx, int destIdx, int limit, makeGraph mkg) {
+bool IDDFS::DLS(int startIdx, int destIdx, int limit, makeGraph mkg) {
     if (startIdx == destIdx) return true;
     if (limit <= 0) return false;
     vector<int> neighbors = mkg.getNeighbors(startIdx);

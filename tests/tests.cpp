@@ -75,18 +75,31 @@ TEST_CASE("parse into data vector, with comma in double inverted commas") {
 TEST_CASE("edge/route exists") {
     makeGraph mkg;
     mkg.populateGraph();
+    bool edge;
     vector<vector<double>> graph = mkg.getGraph();
-    bool edge = mkg.edgeExists(3043, 3131);
+    edge = mkg.edgeExists(3043, 3131);
     //flight from Kolkata to Bengaluru exists
-    REQUIRE(edge == true);   
+    REQUIRE(edge == true);  
+    edge = mkg.edgeExists(3599, 7097);
+    //flight from Bethel to Marshal exists
+    REQUIRE(edge == true);    
+    edge = mkg.edgeExists(4200, 4206);
+    //flight from Butan to Cebu exists
+    REQUIRE(edge == true);    
 }
 
 TEST_CASE("graph populated") {
     makeGraph mkg;
     mkg.populateGraph();
     vector<vector<double>> graph = mkg.getGraph();
-    //distance exists between Kolkata Banglore
+    //Flight exists between Kolkata Banglore
     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] != 0);
+    //Flight exists between Anchorage and St Mary's
+    REQUIRE(graph[mkg.getAirportIndex(3774)][mkg.getAirportIndex(6718)] != 0);
+    //FLight exists between Bethel and Marshal
+    REQUIRE(graph[mkg.getAirportIndex(3599)][mkg.getAirportIndex(7097)] != 0);
+    //Flight exists between Butan and Cebu
+    REQUIRE(graph[mkg.getAirportIndex(4200)][mkg.getAirportIndex(4206)] != 0);
 }
 
 TEST_CASE("route does not exist") {
@@ -95,6 +108,12 @@ TEST_CASE("route does not exist") {
     vector<vector<double>> graph = mkg.getGraph();
     //no route exists between Kolkata and NYC
     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3797)] == 0);
+    //no route between Multan and Kochi
+    REQUIRE(graph[mkg.getAirportIndex(2214)][mkg.getAirportIndex(3136)] == 0);
+    //no route between Karachi and Munich
+    REQUIRE(graph[mkg.getAirportIndex(2206)][mkg.getAirportIndex(346)] == 0);
+    //no route between Lahore and Arusha
+    REQUIRE(graph[mkg.getAirportIndex(2207)][mkg.getAirportIndex(1176)] == 0);
 }
 
 TEST_CASE("add edge works correctly") {
@@ -102,9 +121,22 @@ TEST_CASE("add edge works correctly") {
     makeGraph mkg;
     mkg.populateGraph();
     mkg.addEdge(3797, 3043);
-    vector<vector<double>> graph = mkg.getGraph();
+    vector<vector<double>> graph;
+    graph = mkg.getGraph();
     //now edge exists between Kolkata and JFK
     REQUIRE(graph[mkg.getAirportIndex(3797)][mkg.getAirportIndex(3043)] > 0);
+    mkg.addEdge(2206, 4200);
+    graph = mkg.getGraph();
+    //now edge exists between Karachi and Butan
+    REQUIRE(graph[mkg.getAirportIndex(2206)][mkg.getAirportIndex(4200)] > 0);
+    mkg.addEdge(5687, 3484);
+    graph = mkg.getGraph();
+    //now edge exists between Mogadishu and Los Angeles
+    REQUIRE(graph[mkg.getAirportIndex(5687)][mkg.getAirportIndex(3484)] > 0);
+    mkg.addEdge(2650, 1145);
+    graph = mkg.getGraph();
+    //now edge exists between Santiago and Mombasa
+    REQUIRE(graph[mkg.getAirportIndex(2650)][mkg.getAirportIndex(1145)] > 0);
 }
 
 
@@ -113,9 +145,22 @@ TEST_CASE("remove edge works correctly") {
     makeGraph mkg;
     mkg.populateGraph();
     mkg.deleteEdge(3043, 3131);
-    vector<vector<double>> graph = mkg.getGraph();
-    //now edge does exists between Kolkata and Banglore
+    vector<vector<double>> graph;
+    graph = mkg.getGraph();
+    //now edge does not exists between Kolkata and Banglore
     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] == 0);
+    mkg.deleteEdge(6156, 2952);
+    graph = mkg.getGraph();
+    //now edge does not exists between Belgrod and Kalingrad
+    REQUIRE(graph[mkg.getAirportIndex(6156)][mkg.getAirportIndex(2952)] == 0);
+    mkg.deleteEdge(6969, 4029);
+    graph = mkg.getGraph();
+    //now edge does not exists between Nizhnekamsk and Moscow
+    REQUIRE(graph[mkg.getAirportIndex(6969)][mkg.getAirportIndex(4029)] == 0);
+    mkg.deleteEdge(2206, 2188);
+    graph = mkg.getGraph();
+    //now edge does not exists between Karachi and Dubai
+    REQUIRE(graph[mkg.getAirportIndex(2206)][mkg.getAirportIndex(2188)] == 0);
 }
 
 TEST_CASE("test_distance 0")
@@ -391,4 +436,8 @@ TEST_CASE("IDDFS_reachable") {
     REQUIRE(iddfs.runIDDFS(248, 3830, 2));
     // Chicago is not directly reachable from Accra
     REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 1));
+    //Kochi is not directly reachable from Multan
+    REQUIRE_FALSE(iddfs.runIDDFS(2214, 3136, 1));
+    //Kochi is reachable from Multan with one stopover (e.g. Dubai)
+    REQUIRE(iddfs.runIDDFS(2214, 3136, 2));
 }

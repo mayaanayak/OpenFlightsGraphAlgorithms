@@ -150,7 +150,7 @@ double makeGraph::distance(double lata, double latb, double longa,
   return radius * bc;
 }
 
-// populates the graph and then returns it.
+// returns the graph
 vector<vector<double>>& makeGraph::getGraph()
 {
   return graph;
@@ -228,6 +228,8 @@ bool makeGraph::edgeExists(int sourceAirID, int destAirID)
   }
 }
 
+//returns the distance between two airports
+//takes the source airport and destination airport graph indexes as parameters
 double makeGraph::routeDistance(int source_idx, int dest_idx) {
   if (source_idx < 0 || dest_idx < 0 || source_idx >= static_cast<int>(graph.size()) || dest_idx >= static_cast<int>(graph.size())) {
     throw invalid_argument("routeDistance: The index is not valid");
@@ -262,6 +264,7 @@ int makeGraph::getAirportID(int index) {
   }
 }
 
+//returns the size of the graph
 size_t makeGraph::getGraphSize() {
   return graph.size();
 }

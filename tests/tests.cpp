@@ -5,6 +5,7 @@
 #include "../dijkstra.h"
 #include "../makeGraph.h"
 #include "../DFS.h"
+#include "../iddfs.h"
 #include <typeinfo>
 #include <math.h>       /* exp */
 #include <cmath>

@@ -28,6 +28,9 @@ $(EXENAME): $(OBJS)
 test: parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o tests/tests.o
 	$(LD) parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o tests/tests.o $(LDFLAGS) -o test_output
 
+main:  parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o main.o
+	$(LD) parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o main.o $(LDFLAGS) -o main_output
+
 # test: output_msg parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp
 # 	$(LD) parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp $(LDFLAGS) -o test_output
 

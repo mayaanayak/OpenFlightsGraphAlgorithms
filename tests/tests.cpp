@@ -386,3 +386,4 @@ TEST_CASE("IDDFS_reachable") {
     // Chicago is not directly reachable from Accra
     REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 0));
 }
+

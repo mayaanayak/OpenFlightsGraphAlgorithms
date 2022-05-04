@@ -59,7 +59,7 @@ int main() {
         break;
       }
       case 2: {
-        int stopovers;
+        int flights;
         int destID;
         int sourceID;
 
@@ -67,14 +67,14 @@ int main() {
         cin >> sourceID;
         cout << "Please input your destination airport ID (Unique OpenFlights identifier)" << endl;
         cin >> destID;
-        cout << "How many stopovers do you want to take between the two airports?" << endl;
-        cin >> stopovers;
+        cout << "How many flights do you want to take at most between the two airports?" << endl;
+        cin >> flights;
 
         IDDFS iddfs(mkg);
-        bool ans = iddfs.runIDDFS(sourceID, destID, stopovers);
+        bool ans = iddfs.runIDDFS(sourceID, destID, flights);
         if (ans == true) {
           cout << "" << endl;
-          cout << "Yes the airport is reachable with the given number of stopovers" << endl;
+          cout << "Yes the airport is reachable with the given number of flights" << endl;
           cout << "" << endl;
         } else {
           cout << "" << endl;

@@ -4,6 +4,11 @@
 
 using namespace std;
 
-
-bool IDDFS(int start, int dest, int max_depth);
-bool DLS(int startIdx, int destIdx, int limit, makeGraph mkg);
+class IDDFS {
+    public:
+        IDDFS(makeGraph mkg);
+        bool runIDDFS(int start, int dest, int max_depth);
+        bool DLS(int startIdx, int destIdx, int limit, makeGraph mkg);
+    private:
+        makeGraph mkg_;
+};

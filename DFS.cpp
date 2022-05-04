@@ -20,27 +20,25 @@ string DFS::getAirportIdFromName(std::string name) {
 }
 
 
-string DFS::getAirportFromIndex(int index) {
-    return dv[index][1].substr(1, dv[index][1].length() - 2);
+string DFS::getAirportIdFromIndex(int index) {
+    return dv[index][0];
 }
 
-bool DFS::detect_cycle(vector<string> airports) {
+bool DFS::detect_cycle(vector<string> airportIds) {
 
     queue<string> dfs;
-    //dfs.push(vertices[0]);
-    dfs.push(airports[0]);
+    dfs.push(airportIds[0]);
     map<string, bool> visited;
-    for (size_t i = 0; i < vertices.size(); i++) visited[vertices[i]] = false;
-    //visited[vertices[0]] = true;
-    visited[airports[0]] = true;
+    for (size_t i = 0; i < vertices.size(); i++) visited[getAirportIdFromName(vertices[i])] = false;
+    visited[airportIds[0]] = true;
     while (!dfs.empty()) {
-        string airport = dfs.front();
+        string airportId = dfs.front();
         dfs.pop();
 
-        int id = std::stoi(getAirportIdFromName(airport));
+        int id = std::stoi(airportId);
 
         makeGraph mkg;
-        mkg.populateGraph(); // calling once in constructor
+        mkg.populateGraph();
 
         vector<int> neighborsIdx = mkg.getNeighbors(id);
 
@@ -48,7 +46,7 @@ bool DFS::detect_cycle(vector<string> airports) {
 
         vector<string> neighbors;
         for (int idx : neighborsIdx) {
-            neighbors.push_back(getAirportFromIndex(idx));
+            neighbors.push_back(getAirportIdFromIndex(idx));
         }
 
         for (string str : neighbors) {

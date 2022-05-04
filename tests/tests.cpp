@@ -350,7 +350,7 @@ TEST_CASE("dijkstra_real") {
 TEST_CASE("DFS round trip exists between three airports") {
     populate();
     DFS dfs(graph, vertices, dv);
-    vector<string> vect = {"Chhatrapati Shivaji International Airport", "Netaji Subhash Chandra Bose International Airport", "Indira Gandhi International Airport"};
+    vector<string> vect = {"2997", "3043", "3093"};
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == true);
 }
@@ -358,7 +358,7 @@ TEST_CASE("DFS round trip exists between three airports") {
 TEST_CASE("DFS round trip does not exist between three airports") {
     populate();
     DFS dfs(graph, vertices, dv);
-    vector<string> vect = {"Hao Airport", "Netaji Subhash Chandra Bose International Airport", "Nouméa Magenta Airport"};
+    vector<string> vect = {"1993", "3043", "2001"};
 
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == false);
@@ -367,12 +367,7 @@ TEST_CASE("DFS round trip does not exist between three airports") {
 TEST_CASE("DFS round trip 10 airports") {
     populate();
     DFS dfs(graph, vertices, dv);
-    vector<string> vect = {"Chhatrapati Shivaji International Airport", 
-    "Netaji Subhash Chandra Bose International Airport", 
-    "Indira Gandhi International Airport", 
-    "Kempegowda International Airport", "Chennai International Airport", 
-    "Sardar Vallabhbhai Patel International Airport", 
-    "Goroka Airport", "Madang Airport", "Nadzab Airport"};
+    vector<string> vect = {"2997", "3043", "3093", "3131", "3144", "2994", "1", "2", "3"};
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == true);
 }

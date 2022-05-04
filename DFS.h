@@ -19,7 +19,7 @@ class DFS {
         bool detect_cycle(vector<string> airports); 
     private:
         string getAirportIdFromName(std::string name);
-        string getAirportFromIndex(int index);
+        string getAirportIdFromIndex(int index);
         vector<vector<double>> graph;
         vector<string> vertices;
         vector<vector<string>> dv;

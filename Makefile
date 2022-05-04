@@ -13,20 +13,20 @@ LD = clang++
 LDFLAGS = -std=c++14 -stdlib=libc++ -lc++abi -lm
 
 # Custom Clang Enforcement
-include cs225/make/make.mk
+include cs225/make/cs225.mk
 
 # Define Makefile Rules
-.PHONY: all test clean output_msg
+.PHONY: all test clean
 
 project : $(EXENAME)
 
 output_msg: ; $(CLANG_VERSION_MSG)
 
-$(EXENAME): output_msg $(OBJS)
+$(EXENAME): $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: output_msg parseDat.o makeGraph.o iddfs.o dijkstra.o tests/tests.o
-	$(LD) parseDat.o makeGraph.o iddfs.o dijkstra.o tests/tests.o $(LDFLAGS) -o test_output
+test: parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o tests/tests.o
+	$(LD) parseDat.o makeGraph.o iddfs.o dijkstra.o DFS.o tests/tests.o $(LDFLAGS) -o test_output
 
 # test: output_msg parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp
 # 	$(LD) parseDat.cpp main.cpp makeGraph.cpp iddfs.cpp dijkstra.cpp tests/tests.cpp $(LDFLAGS) -o test_output

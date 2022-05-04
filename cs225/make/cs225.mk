@@ -70,8 +70,8 @@ CPP_TEST = $(wildcard tests/*.cpp)
 CPP_TEST += cs225/catch/catchmain.cpp
 OBJS_TEST += $(CPP_TEST:.cpp=.o)
 
-# $(TEST): $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
-# 	$(LD) $(filter-out $<, $^) $(LDFLAGS) -o $@
+$(TEST): $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
+	$(LD) $(filter-out $<, $^) $(LDFLAGS) -o $@
 
 # Additional dependencies for object files are included in the clang++
 # generated .d files (from $(DEPFILE_FLAGS)):

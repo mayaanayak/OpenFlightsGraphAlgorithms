@@ -15,112 +15,128 @@
 
 using namespace std;
 
+vector<vector<double>> graph;
+vector<vector<string>> dv;
+vector<string> vertices;
 
-// TEST_CASE("Parse into data vector") {
-//     parseData pdt;
-//     vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
-//     int id = stoi(parsed[0][0]);
-//     string airportName = parsed[0][1].substr(1, 14);
-//     string city = parsed[0][2].substr(1, 6);
-//     string country = parsed[0][3].substr(1,16);
-//     string airportCode = parsed[0][4].substr(1,3);
-//     long double latitude = stold(parsed[0][6]);
-//     long double longitude = stold(parsed[0][7]);
-
-
-//     double epsilon = 0.0000001f;
-
-//     REQUIRE(id == 1);
-//     REQUIRE(airportName == "Goroka Airport");
-//     REQUIRE(city == "Goroka");
-//     REQUIRE(country == "Papua New Guinea");
-//     REQUIRE(airportCode == "GKA");
-//     REQUIRE(fabs(latitude - (-6.081689834590001)) < epsilon);
-//     REQUIRE(fabs(longitude - (145.391998291)) < epsilon);
-// }
+void populate() {
+    makeGraph mkg;
+    mkg.populateGraph();
+    graph = mkg.getGraph();
+    parseData pdt;
+    dv = pdt.getDataVector("dataset/airports.dat");
+    for (size_t i = 0; i < dv.size(); i++) vertices.push_back(dv[i][1].substr(1, dv[i][1].length() - 2));
+}
 
 
-// TEST_CASE("Parse into data vector, with parentheses in double inverted commas") {
-//     parseData pdt;
-//     vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
-//     string airportName = parsed[652][1].substr(1, 30);
-//     REQUIRE(airportName == "Sandnessjøen Airport (Stokka)");
-// }
-
-// TEST_CASE("parse into data vector, with comma in double inverted commas") {
-//     parseData pdt;
-//     vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
-//     string airportName = parsed[648][1].substr(1, 19);
-//     REQUIRE(airportName == "Moss Airport, Rygge");
-// }
+TEST_CASE("Parse into data vector") {
+    populate();
+    // parseData pdt;
+    // vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
+    int id = stoi(dv[0][0]);
+    string airportName = dv[0][1].substr(1, 14);
+    string city = dv[0][2].substr(1, 6);
+    string country = dv[0][3].substr(1,16);
+    string airportCode = dv[0][4].substr(1,3);
+    long double latitude = stold(dv[0][6]);
+    long double longitude = stold(dv[0][7]);
 
 
-// TEST_CASE("edge/route exists") {
-//     makeGraph mkg;
-//     mkg.populateGraph();
-//     vector<vector<double>> graph = mkg.getGraph();
-//     bool edge = mkg.edgeExists(3043, 3131);
-//     //flight from Kolkata to Bengaluru exists
-//     REQUIRE(edge == true);   
-// }
+    double epsilon = 0.0000001f;
 
-// TEST_CASE("graph populated") {
-//     makeGraph mkg;
-//     mkg.populateGraph();
-//     vector<vector<double>> graph = mkg.getGraph();
-//     //distance exists between Kolkata Banglore
-//     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] != 0);
-// }
-
-// TEST_CASE("route does not exist") {
-//     makeGraph mkg;
-//     mkg.populateGraph();
-//     vector<vector<double>> graph = mkg.getGraph();
-//     //no route exists between Kolkata and NYC
-//     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3797)] == 0);
-// }
-
-// TEST_CASE("add edge works correctly") {
-//     //3797, 3043 
-//     makeGraph mkg;
-//     mkg.populateGraph();
-//     mkg.addEdge(3797, 3043);
-//     vector<vector<double>> graph = mkg.getGraph();
-//     //now edge exists between Kolkata and JFK
-//     REQUIRE(graph[mkg.getAirportIndex(3797)][mkg.getAirportIndex(3043)] > 0);
-// }
+    REQUIRE(id == 1);
+    REQUIRE(airportName == "Goroka Airport");
+    REQUIRE(city == "Goroka");
+    REQUIRE(country == "Papua New Guinea");
+    REQUIRE(airportCode == "GKA");
+    REQUIRE(fabs(latitude - (-6.081689834590001)) < epsilon);
+    REQUIRE(fabs(longitude - (145.391998291)) < epsilon);
+}
 
 
-// TEST_CASE("remove edge works correctly") {
-//     //3797, 3043 
-//     makeGraph mkg;
-//     mkg.populateGraph();
-//     mkg.deleteEdge(3043, 3131);
-//     vector<vector<double>> graph = mkg.getGraph();
-//     //now edge does exists between Kolkata and Banglore
-//     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] == 0);
-// }
+TEST_CASE("Parse into data vector, with parentheses in double inverted commas") {
+    populate();
+    // parseData pdt;
+    // vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
+    string airportName = dv[652][1].substr(1, 30);
+    REQUIRE(airportName == "Sandnessjøen Airport (Stokka)");
+}
+
+TEST_CASE("parse into data vector, with comma in double inverted commas") {
+    populate();
+    // parseData pdt;
+    // vector<vector<string>> parsed = pdt.getDataVector("dataset/airports.dat");
+    string airportName = dv[648][1].substr(1, 19);
+    REQUIRE(airportName == "Moss Airport, Rygge");
+}
 
 
-// TEST_CASE("test_priority_queue")
-// {
-//     std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
-//     Vertex a(0, 10.4);
-//     Vertex b(0, 11.3);
-//     Vertex c(2, 5.2);
-//     q.push(a);
-//     q.push(b);
-//     q.push(c);
-//     Vertex result = q.top();
-//     q.pop();
-//     REQUIRE(result.weight_ == 5.2);
-//     result = q.top();
-//     q.pop();
-//     REQUIRE(result.weight_ == 10.4);
-//     result = q.top();
-//     q.pop();
-//     REQUIRE(result.weight_ == 11.3);
-// }
+TEST_CASE("edge/route exists") {
+    makeGraph mkg;
+    mkg.populateGraph();
+    vector<vector<double>> graph = mkg.getGraph();
+    bool edge = mkg.edgeExists(3043, 3131);
+    //flight from Kolkata to Bengaluru exists
+    REQUIRE(edge == true);   
+}
+
+TEST_CASE("graph populated") {
+    makeGraph mkg;
+    mkg.populateGraph();
+    vector<vector<double>> graph = mkg.getGraph();
+    //distance exists between Kolkata Banglore
+    REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] != 0);
+}
+
+TEST_CASE("route does not exist") {
+    makeGraph mkg;
+    mkg.populateGraph();
+    vector<vector<double>> graph = mkg.getGraph();
+    //no route exists between Kolkata and NYC
+    REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3797)] == 0);
+}
+
+TEST_CASE("add edge works correctly") {
+    //3797, 3043 
+    makeGraph mkg;
+    mkg.populateGraph();
+    mkg.addEdge(3797, 3043);
+    vector<vector<double>> graph = mkg.getGraph();
+    //now edge exists between Kolkata and JFK
+    REQUIRE(graph[mkg.getAirportIndex(3797)][mkg.getAirportIndex(3043)] > 0);
+}
+
+
+TEST_CASE("remove edge works correctly") {
+    //3797, 3043 
+    makeGraph mkg;
+    mkg.populateGraph();
+    mkg.deleteEdge(3043, 3131);
+    vector<vector<double>> graph = mkg.getGraph();
+    //now edge does exists between Kolkata and Banglore
+    REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] == 0);
+}
+
+
+TEST_CASE("test_priority_queue")
+{
+    std::priority_queue<Vertex, std::vector<Vertex>, Compare> q;
+    Vertex a(0, 10.4);
+    Vertex b(0, 11.3);
+    Vertex c(2, 5.2);
+    q.push(a);
+    q.push(b);
+    q.push(c);
+    Vertex result = q.top();
+    q.pop();
+    REQUIRE(result.weight_ == 5.2);
+    result = q.top();
+    q.pop();
+    REQUIRE(result.weight_ == 10.4);
+    result = q.top();
+    q.pop();
+    REQUIRE(result.weight_ == 11.3);
+}
 
 TEST_CASE("test_dijkstra_small")
 {
@@ -288,34 +304,27 @@ TEST_CASE("dijkstra_unconnected") {
     }
 }
 
-// We used the map on https://openflights.org/# and https://openflights.org/html/apsearch to create the real test cases.
-TEST_CASE("dijkstra_real") {
-    makeGraph mkg;
-    Dijkstra dijkstra(mkg);
-    dijkstra.runDijkstra(3797);
-    std::vector<double> distance = dijkstra.getDist();
-    // The distance between JFK and itself is 0
-    REQUIRE(distance[mkg.getAirportIndex(3797)] == 0);
-    // The distance between JFK and EZE is 
-    REQUIRE(distance[mkg.getAirportIndex(3988)] == 15);
-}
 
-TEST_CASE("DFS, round trip exists between three airports") {
-    DFS dfs;
+TEST_CASE("DFS round trip exists between three airports") {
+    populate();
+    DFS dfs(graph, vertices, dv);
     vector<string> vect = {"Chhatrapati Shivaji International Airport", "Netaji Subhash Chandra Bose International Airport", "Indira Gandhi International Airport"};
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == true);
 }
 
-TEST_CASE("DFS, round trip does not exist between three airports") {
-    DFS dfs;
+TEST_CASE("DFS round trip does not exist between three airports") {
+    populate();
+    DFS dfs(graph, vertices, dv);
     vector<string> vect = {"Hao Airport", "Netaji Subhash Chandra Bose International Airport", "Nouméa Magenta Airport"};
+
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == false);
 }
 
-TEST_CASE("DFS< round trip 10 airports") {
-    DFS dfs;
+TEST_CASE("DFS round trip 10 airports") {
+    populate();
+    DFS dfs(graph, vertices, dv);
     vector<string> vect = {"Chhatrapati Shivaji International Airport", 
     "Netaji Subhash Chandra Bose International Airport", 
     "Indira Gandhi International Airport", 

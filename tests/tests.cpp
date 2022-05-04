@@ -377,13 +377,18 @@ TEST_CASE("IDDFS_reachable") {
     makeGraph mkg;
     mkg.populateGraph();
     IDDFS iddfs(mkg);
+    // Kolkata is not reachable from Delhi with zero flights
+    REQUIRE_FALSE(iddfs.runIDDFS(3093, 3043, 0));
+    // Kolkata is directly reachable from Delhi
+    REQUIRE(iddfs.runIDDFS(3093, 3043, 1));
+    // Kolkata is reachable from Delhi with a max of two flights
+    REQUIRE(iddfs.runIDDFS(3093, 3043, 2));
     // Keflavík is reachable from Dar es Salaam with one stopover
-    REQUIRE(iddfs.runIDDFS(1177, 16, 1));
+    REQUIRE(iddfs.runIDDFS(1177, 16, 2));
     // Keflavík is not directly reachable from Dar es Salaam
-    REQUIRE_FALSE(iddfs.runIDDFS(1177, 16, 0));
-    // Chicago is not reachable from Accra with one stopover
-    REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 1));
+    REQUIRE_FALSE(iddfs.runIDDFS(1177, 16, 1));
+    // Chicago is reachable from Accra with one stopover
+    REQUIRE(iddfs.runIDDFS(248, 3830, 2));
     // Chicago is not directly reachable from Accra
     REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 0));
 }
-

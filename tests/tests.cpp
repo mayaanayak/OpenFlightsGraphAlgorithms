@@ -371,3 +371,17 @@ TEST_CASE("DFS round trip 10 airports") {
     bool det = dfs.detect_cycle(vect);
     REQUIRE(det == true);
 }
+
+TEST_CASE("IDDFS_reachable") {
+    makeGraph mkg;
+    mkg.populateGraph();
+    IDDFS iddfs(mkg);
+    // Keflavík is reachable from Dar es Salaam with one stopover
+    REQUIRE(iddfs.runIDDFS(1177, 16, 1));
+    // Keflavík is not directly reachable from Dar es Salaam
+    REQUIRE_FALSE(iddfs.runIDDFS(1177, 16, 0));
+    // Chicago is not reachable from Accra with one stopover
+    REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 1));
+    // Chicago is not directly reachable from Accra
+    REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 0));
+}

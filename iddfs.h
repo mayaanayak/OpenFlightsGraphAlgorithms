@@ -7,7 +7,7 @@ using namespace std;
 class IDDFS {
     public:
         IDDFS(makeGraph mkg);
-        bool runIDDFS(int start, int dest, int max_depth);
+        bool runIDDFS(int start, int dest, int max_stopovers);
         bool DLS(int startIdx, int destIdx, int limit, makeGraph mkg);
     private:
         makeGraph mkg_;

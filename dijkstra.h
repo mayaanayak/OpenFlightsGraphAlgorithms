@@ -10,9 +10,11 @@
 class Dijkstra {
     public:
         Dijkstra(makeGraph mkg);
+        // Runs the Dijkstra algorithm with the inputted source airport
         std::vector<double> runDijkstra(int source_id);
         std::vector<int> getPrev();
         std::vector<double> getDist();
+        // Returns the minimum distance of the path between two airports
         double minDist(int source_id, int dest_id);
 
     private:

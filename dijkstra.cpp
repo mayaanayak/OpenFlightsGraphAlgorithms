@@ -22,6 +22,7 @@ std::vector<double> Dijkstra::getDist() {
 
 Dijkstra::Dijkstra(makeGraph mkg): mkg_(mkg), source_id_(1) {}
 
+// Runs the Dijkstra algorithm with the inputted source airport
 std::vector<double> Dijkstra::runDijkstra(int source_id) {
     source_id_ = source_id;
 
@@ -90,6 +91,7 @@ std::vector<double> Dijkstra::runDijkstra(int source_id) {
     return dist_;
 }
 
+// Returns the minimum distance of the path between two airports
 double Dijkstra::minDist(int source_id, int dest_id) {
   int dest_idx = mkg_.getAirportIndex(dest_id);
   if (source_id_ != source_id) {

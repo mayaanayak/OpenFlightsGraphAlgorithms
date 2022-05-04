@@ -4,10 +4,10 @@
 
 IDDFS::IDDFS(makeGraph mkg): mkg_(mkg) {}
 
-bool IDDFS::runIDDFS(int start, int dest, int max_depth) {
+bool IDDFS::runIDDFS(int start, int dest, int max_flights) {
     int startIdx = mkg_.getAirportIndex(start);
     int destIdx = mkg_.getAirportIndex(dest);
-    for (int i = 0; i <= max_depth; i++) {
+    for (int i = 0; i <= max_flights; i++) {
         std::pair<int, bool> foundremaining = DLS(startIdx, destIdx, i);
         int found = foundremaining.first;
         bool remaining = foundremaining.second;

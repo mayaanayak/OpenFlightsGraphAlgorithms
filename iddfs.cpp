@@ -9,7 +9,7 @@ bool IDDFS::runIDDFS(int start, int dest, int max_stopovers) {
     int startIdx = mkg_.getAirportIndex(start);
     int destIdx = mkg_.getAirportIndex(dest);
     for (int i = 0; i <= max_stopovers; i++) {
-        if (DLS(startIdx, destIdx, i, mkg_)) {
+        if (DLS(startIdx, destIdx, i)) {
             return true;
         }
     }

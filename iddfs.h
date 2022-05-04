@@ -6,7 +6,7 @@
 class IDDFS {
     public:
         IDDFS(makeGraph mkg);
-        bool runIDDFS(int start, int dest, int max_depth);
+        bool runIDDFS(int start, int dest, int max_flights);
         std::pair<int, bool> DLS(int startIdx, int destIdx, int limit);
     private:
         makeGraph mkg_;

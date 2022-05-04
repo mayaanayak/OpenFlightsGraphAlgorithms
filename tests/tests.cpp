@@ -117,6 +117,20 @@ TEST_CASE("remove edge works correctly") {
     REQUIRE(graph[mkg.getAirportIndex(3043)][mkg.getAirportIndex(3131)] == 0);
 }
 
+TEST_CASE("test_distance 0")
+{
+    makeGraph mkg;
+    double distance_ = mkg.distance(1,1,34,34);
+    REQUIRE(distance_ == 0.0);
+}
+TEST_CASE("test_distance 1")
+{
+    makeGraph mkg;
+ 
+    double epsilon = 0.0000001f;
+    double distance_ = mkg.distance(1,34,30,45);
+    REQUIRE(fabs(distance_ - 3987.7187763268) < epsilon);
+}
 
 TEST_CASE("test_priority_queue")
 {

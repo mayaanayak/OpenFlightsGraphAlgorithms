@@ -36,9 +36,8 @@ public:
   vector<int> getNeighbors(int index);
   int getAirportID(int index);
   size_t getGraphSize();
-
-private:
   double distance(double lata, double latb, double longa, double longb);
+private: 
   unordered_map<int, int> airport_index;
   unordered_map<int, vector<int>> neighbors;
   vector<vector<double>> graph;

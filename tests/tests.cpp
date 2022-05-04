@@ -304,6 +304,34 @@ TEST_CASE("dijkstra_unconnected") {
     }
 }
 
+// We used the map on https://openflights.org/# and https://openflights.org/html/apsearch to create the real test cases.
+TEST_CASE("dijkstra_real") {
+    makeGraph mkg;
+    mkg.populateGraph();
+    Dijkstra dijkstra(mkg);
+    // JFK to JFK
+    // New York City to New York City
+    REQUIRE(dijkstra.minDist(3797, 3797) == 0);
+    // JFK to EZE
+    // New York City to Buenos Aires
+    REQUIRE(dijkstra.minDist(3797, 3988) == mkg.routeDistance(mkg.getAirportIndex(3797), mkg.getAirportIndex(3988)));
+    // JFK to CCU
+    // JFK -> DEL -> CCU
+    // New York City to Kolkata
+    double JFKtoDEL = mkg.routeDistance(mkg.getAirportIndex(3797), mkg.getAirportIndex(3093));
+    double DELtoCCU = mkg.routeDistance(mkg.getAirportIndex(3093), mkg.getAirportIndex(3043));
+    double JFKtoCCU = JFKtoDEL + DELtoCCU;
+    REQUIRE(JFKtoCCU == dijkstra.minDist(3797, 3043));
+    // AUX to PMW
+    REQUIRE(dijkstra.minDist(4214, 7376) == mkg.routeDistance(mkg.getAirportIndex(4214), mkg.getAirportIndex(7376))); 
+    // Dijkstra chooses shortest path
+    // HKG -> SYD -> OOL
+    // 3077 to 3361 to 3321
+    double HKGtoSYD = mkg.routeDistance(mkg.getAirportIndex(3077), mkg.getAirportIndex(3361));
+    double SYDtoOOL = mkg.routeDistance(mkg.getAirportIndex(3361), mkg.getAirportIndex(3321));
+    double HKGtoOOL = HKGtoSYD + SYDtoOOL;
+    REQUIRE(dijkstra.minDist(3077, 3321) < HKGtoOOL);
+}
 
 TEST_CASE("DFS round trip exists between three airports") {
     populate();

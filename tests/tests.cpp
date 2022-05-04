@@ -390,5 +390,5 @@ TEST_CASE("IDDFS_reachable") {
     // Chicago is reachable from Accra with one stopover
     REQUIRE(iddfs.runIDDFS(248, 3830, 2));
     // Chicago is not directly reachable from Accra
-    REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 0));
+    REQUIRE_FALSE(iddfs.runIDDFS(248, 3830, 1));
 }

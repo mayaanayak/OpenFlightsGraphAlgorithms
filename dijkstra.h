@@ -10,14 +10,15 @@
 class Dijkstra {
     public:
         Dijkstra(makeGraph mkg);
-        void runDijkstra(int source_id);
+        std::vector<double> runDijkstra(int source_id);
         std::vector<int> getPrev();
         std::vector<double> getDist();
+        double minDist(int source_id, int dest_id);
 
     private:
         makeGraph mkg_;
         std::vector<double> dist_;
-        // int source_idx_;
+        int source_id_;
         std::vector<int> prev_;
         std::vector<bool> seen_;
 };

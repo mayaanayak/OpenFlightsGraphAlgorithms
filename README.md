@@ -7,7 +7,7 @@ $ git clone https://github-dev.cs.illinois.edu/cs225-sp22/harsha4-saraza2-kushal
 to get a copy of the repository. 
 
 ## Licensing
-
+The source of this data is [OpenFlights](openflights.org). This derived work is available to the public MIT license. See [the OpenFlights website](https://openflights.org/data.html#license) for licensing terms.
 
 ## Description
 

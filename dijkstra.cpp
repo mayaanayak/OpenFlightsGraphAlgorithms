@@ -20,9 +20,11 @@ std::vector<double> Dijkstra::getDist() {
   return dist_;
 }
 
-Dijkstra::Dijkstra(makeGraph mkg): mkg_(mkg) {}
+Dijkstra::Dijkstra(makeGraph mkg): mkg_(mkg), source_id_(1) {}
 
-void Dijkstra::runDijkstra(int source_id) {
+std::vector<double> Dijkstra::runDijkstra(int source_id) {
+    source_id_ = source_id;
+
     // Clears the distance, previous, and seen vectors in case dijkstra was already run.
     dist_.clear();
     prev_.clear();
@@ -85,4 +87,14 @@ void Dijkstra::runDijkstra(int source_id) {
         }
       }
     }
+    return dist_;
+}
+
+double Dijkstra::minDist(int source_id, int dest_id) {
+  int dest_idx = mkg_.getAirportIndex(dest_id);
+  if (source_id_ != source_id) {
+    source_id_ = source_id;
+    runDijkstra(source_id_);
+  }
+  return dist_[dest_idx];
 }

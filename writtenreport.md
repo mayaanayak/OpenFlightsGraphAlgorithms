@@ -67,7 +67,7 @@ We then tested our algorithm on the graph itself. Determining the minimum distan
 ```
 REQUIRE(dijkstra.minDist(3797, 3797) == 0);
 ```
-2) The user wants to determine the minimum distance between an Airport A and an Airport B, where there is a direct flight between Airport A and Airport B. We tested this scenario by verifying that the Dijkstra outputted the orthodromic distance between JFK and EZE when the user inputted the airport ID corresponding to JFK as the source airport nd the airport ID corresponding to EZE as the destination airport.
+2) The user wants to determine the minimum distance between an Airport A and an Airport B, where there is a direct flight between Airport A and Airport B. We tested this scenario by verifying that the Dijkstra outputted the orthodromic distance between JFK and EZE when the user inputted the airport ID corresponding to JFK as the source airport and the airport ID corresponding to EZE as the destination airport.
 ```
 REQUIRE(dijkstra.minDist(3797, 3988) == mkg.routeDistance(mkg.getAirportIndex(3797), mkg.getAirportIndex(3988)));
 ```

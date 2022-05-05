@@ -37,9 +37,24 @@ $ ./test_output
 
 ## Using the CLI program
 
-OpenFlights Analysis supports the following commands at this time:
+OpenFlights Analysis supports the following commands:
 
-`help` Will display a general purpose help message for all commands.
+`1` - Determine the minimum distance between two airports
 ```
-> help
+> 1
+```
+
+`2` - Determine if an airport is reachable from a given airport
+```
+> 2
+```
+
+`3` - Determine if, given three or more airports, it is possible to visit at least one airport more than once
+```
+> 3
+```
+
+`4` - Quit
+```
+> 4
 ```

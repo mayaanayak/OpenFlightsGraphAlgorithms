@@ -6,9 +6,47 @@ How did you answer question?
 What did you discover?
 
 ## DFS
-Output and correctness of DFS
-Summarize, visualize, or highlight full-scale run of algorithm
-Describe tests used to confirm algorithm worked as intended
+We employ DFS to determine that given three or more airports, is it possible to visit an airport more than once. This can in fact be used to determine if a round trip exists between two airports, which might in fact help users plan a trip. 
+
+We first verified the correctness of DFS using small test cases, (3 airports). The test case is given below. DFS works by calling the public function on a set of airport ids, yeildig true if a cycle is detected.
+
+```C++ 
+    bool detect_cycle(vector<string> airportIds);
+```
+
+The test case below checks for 3 given indian airports, which are sure to have a round trip between them, and yeilds the desired output i.e. true.
+
+```C++
+    DFS dfs(graph, vertices, dv);
+    vector<string> vect = {"2997", "3043", "3093"};
+    bool det = dfs.detect_cycle(vect);
+    REQUIRE(det == true);
+```
+
+Next, to check if there is no round trip between the given airports, or a cycle between them, we use the below mentioned test case. The airports are from 3 different continents, with no round trip existing between them. Upon running DFS, we get false, which is what we expect.
+
+```C++
+    TEST_CASE("DFS round trip does not exist between three airports") {
+    populate();
+    DFS dfs(graph, vertices, dv);
+    vector<string> vect = {"1993", "3043", "2001"};
+
+    bool det = dfs.detect_cycle(vect);
+    REQUIRE(det == false);
+    }
+```
+
+In order to check if DFS works on bigger test cases, we used a set of ten airports and see if it yeilds our desired output. As expected, the output works correctly, passing all DFS test cases, showing that there is a round trip 
+
+```C++
+    TEST_CASE("DFS round trip 10 airports") {
+        populate();
+        DFS dfs(graph, vertices, dv);
+        vector<string> vect = {"2997", "3043", "3093", "3131", "3144", "2994", "1", "2", "3"};
+        bool det = dfs.detect_cycle(vect);
+        REQUIRE(det == true);
+    }
+```
 
 ## Dijkstra
 We employ the Dijkstra algorithm to determine the minimum distance between two airports.
@@ -52,3 +90,5 @@ Describe tests used to confirm algorithm worked as intended
 
 
 "All project goals are met and: There are clear descriptions, figures, or tables of each method's output on the full target dataset. (Note: Figures can be stored as plain images in your git repo and the link provided in the .md) There is a written discussion of the projects findings that makes and proves a claim that each method was successful. 
+
+

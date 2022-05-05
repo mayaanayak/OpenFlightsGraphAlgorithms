@@ -11,7 +11,7 @@ Summarize, visualize, or highlight full-scale run of algorithm
 Describe tests used to confirm algorithm worked as intended
 
 ## Dijkstra
-We employ the Dijkstra algorithm 
+We employ the Dijkstra algorithm to determine the minimum distance between two airports.
 
 We first verified the correctness of Dijkstra using small, artificial test cases, such as those shown below. We constructed our variant of an adjacency matrix (a 0 entry indicates the lack of an edge between two airports, while a non-zero entry indicates the distance between two airports) for each of these test cases. We arbitrarily assigned each node IDs, and we created a special makeGraph constructor to enable these test cases. Since these graphs are relatively small, it was feasible to test that the minimum distance from every node to every other node was what we expected:
 
@@ -40,7 +40,7 @@ double DELtoCCU = mkg.routeDistance(mkg.getAirportIndex(3093), mkg.getAirportInd
 double JFKtoCCU = JFKtoDEL + DELtoCCU;
 REQUIRE(JFKtoCCU == dijkstra.minDist(3797, 3043));
 ```
-5) The user wants to determine the minimum distance between Airport A and Airport B, where Airport B is not reachable from Airport A. We tested this scenario by verifying that Dijkstra outputted the maximum double value when the user inputted the airport ID corresponding to GEA as the source airport and the airport ID corresponding to CCU as the destination airport.
+4) The user wants to determine the minimum distance between Airport A and Airport B, where Airport B is not reachable from Airport A. We tested this scenario by verifying that Dijkstra outputted the maximum double value when the user inputted the airport ID corresponding to GEA as the source airport and the airport ID corresponding to CCU as the destination airport.
 ```
 REQUIRE(dijkstra.minDist(2001, 3043) == std::numeric_limits<double>::max());
 ```

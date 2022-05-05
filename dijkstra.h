@@ -14,7 +14,9 @@ class Dijkstra {
         std::vector<double> runDijkstra(int source_id);
         std::vector<int> getPrev();
         std::vector<double> getDist();
-        // Returns the minimum distance of the path between two airports
+        // Returns the minimum distance of the path between a source airport and a destination airport as a double
+        // source_id: The ID of the source airport
+        // dest_id: The ID of the destination airport
         double minDist(int source_id, int dest_id);
 
     private:
@@ -32,6 +34,7 @@ struct Vertex {
   double weight_;
 };
 
+// Custom comparator for the priority queue
 struct Compare
 {
     bool operator()(const Vertex& lhs, const Vertex& rhs)

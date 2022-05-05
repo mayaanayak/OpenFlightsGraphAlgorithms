@@ -391,6 +391,8 @@ TEST_CASE("dijkstra_real") {
     double SYDtoOOL = mkg.routeDistance(mkg.getAirportIndex(3361), mkg.getAirportIndex(3321));
     double HKGtoOOL = HKGtoSYD + SYDtoOOL;
     REQUIRE(dijkstra.minDist(3077, 3321) < HKGtoOOL);
+    // Unreachable
+    REQUIRE(dijkstra.minDist(2001, 3043) == std::numeric_limits<double>::max());
 }
 
 TEST_CASE("DFS round trip exists between three airports") {

@@ -58,3 +58,9 @@ OpenFlights Analysis supports the following commands:
 ```
 > 4
 ```
+
+## OpenFlights Identifier
+
+The program will prompt you to input airport IDs as an OpenFlights identifier. If you do not know the OpenFlights identifier corresponding to an airport, use the [airport search tool](https://openflights.org/html/apsearch). To use this tool, enter the IATA/FAA of an airport (e.g. John F. Kennedy International Airport has the IATA/FAA "JFK"). Then click "Search." The airport corresponding to the FAA will display. Click "Load." The OpenFlights identifier is the number highlighted in the below picture:
+
+![](RM1.png)

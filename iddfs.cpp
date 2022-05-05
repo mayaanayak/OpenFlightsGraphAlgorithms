@@ -5,8 +5,10 @@
 IDDFS::IDDFS(makeGraph mkg): mkg_(mkg) {}
 
 bool IDDFS::runIDDFS(int start, int dest, int max_flights) {
+    // Find the indices corresponding to the inputted source and destination IDs
     int startIdx = mkg_.getAirportIndex(start);
     int destIdx = mkg_.getAirportIndex(dest);
+    // Iterate from 0 to the maximum number of flights, and return if we find the destination airport
     for (int i = 0; i <= max_flights; i++) {
         std::pair<int, bool> foundremaining = DLS(startIdx, destIdx, i);
         int found = foundremaining.first;
@@ -23,8 +25,10 @@ bool IDDFS::runIDDFS(int start, int dest, int max_flights) {
 
 std::pair<int, bool> IDDFS::DLS(int startIdx, int destIdx, int limit) {
     if (limit == 0) {
+        // Return when the destination airport is found
         if (startIdx == destIdx) {
             return (std::pair<int,bool>(startIdx,true));
+        // Return that the destination airport was not found
         } else {
             return (std::pair<int, bool>(std::numeric_limits<int>::max(), true));
         }
@@ -36,6 +40,7 @@ std::pair<int, bool> IDDFS::DLS(int startIdx, int destIdx, int limit) {
         std::pair<int, bool> foundremaining = DLS(child, destIdx, limit - 1);
         int found = foundremaining.first;
         bool remaining = foundremaining.second;
+        // Return that the destination airport was found
         if (found != std::numeric_limits<int>::max()) {
             return (std::pair<int, bool>(found, true));
         }
@@ -43,6 +48,7 @@ std::pair<int, bool> IDDFS::DLS(int startIdx, int destIdx, int limit) {
             any_remaining = true;
         }
     }
+    // Return that the destination airport was not found, and whether there are remaining airports to explore
     return (std::pair<int, bool>(std::numeric_limits<int>::max(), any_remaining));
 }
 

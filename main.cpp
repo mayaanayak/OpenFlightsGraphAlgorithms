@@ -49,8 +49,8 @@ int main()
     {
     case 1:
     {
-      int destID;
-      int sourceID;
+      int destID = -2;
+      int sourceID = -2;
       bool flag = false;
 
       while (!flag)
@@ -89,9 +89,9 @@ int main()
     }
     case 2:
     {
-      int flights;
-      int destID;
-      int sourceID;
+      int flights = 0;
+      int destID = -2;
+      int sourceID = -2;
       bool flag = false;
 
       while (!flag)

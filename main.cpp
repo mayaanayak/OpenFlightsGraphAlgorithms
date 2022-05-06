@@ -121,9 +121,11 @@ int main()
           cout << "Airport ID invalid, try again" << endl;
         }
       }
-      cout << "How many flights do you want to take at most between the two airports?" << endl;
-      cin >> flights;
-
+      while (flights < 1)
+      {
+        cout << "How many flights do you want to take at most between the two airports?" << endl;
+        cin >> flights;
+      }
       IDDFS iddfs(mkg);
       bool ans = iddfs.runIDDFS(sourceID, destID, flights);
       if (ans == true)

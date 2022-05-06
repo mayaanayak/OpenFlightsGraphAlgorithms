@@ -391,6 +391,14 @@ TEST_CASE("dijkstra_real") {
     double SYDtoOOL = mkg.routeDistance(mkg.getAirportIndex(3361), mkg.getAirportIndex(3321));
     double HKGtoOOL = HKGtoSYD + SYDtoOOL;
     REQUIRE(dijkstra.minDist(3077, 3321) < HKGtoOOL);
+    // Dijkstra chooses shortest path
+    // SEA -> KEF -> OSL -> VNO -> MSQ -> AER
+    double SEAtoKEF = mkg.routeDistance(mkg.getAirportIndex(3577), mkg.getAirportIndex(16));
+    double KEFtoOSL = mkg.routeDistance(mkg.getAirportIndex(16), mkg.getAirportIndex(644));
+    double OSLtoVNO = mkg.routeDistance(mkg.getAirportIndex(644), mkg.getAirportIndex(3959));
+    double VNOtoMSQ = mkg.routeDistance(mkg.getAirportIndex(3959), mkg.getAirportIndex(2954));
+    double MSQtoAER = mkg.routeDistance(mkg.getAirportIndex(2954), mkg.getAirportIndex(2965));
+    REQUIRE(dijkstra.minDist(3577, 2965) < SEAtoKEF + KEFtoOSL + OSLtoVNO + VNOtoMSQ + VNOtoMSQ + MSQtoAER);
     // Unreachable
     REQUIRE(dijkstra.minDist(2001, 3043) == std::numeric_limits<double>::max());
 }

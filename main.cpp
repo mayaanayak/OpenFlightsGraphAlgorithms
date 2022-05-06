@@ -54,7 +54,7 @@ int main() {
         Dijkstra dijk(mkg);
         double dist = dijk.minDist(sourceID, destID);
         cout << "" << endl;
-        cout << "The shortest distance between " << sourceID << " and " << destID << " is " << dist << endl;
+        cout << "The shortest distance between " << sourceID << " and " << destID << " is " << dist << "km" << endl;
         cout << "" << endl;
         break;
       }

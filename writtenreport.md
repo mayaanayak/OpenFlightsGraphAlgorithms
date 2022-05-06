@@ -84,11 +84,33 @@ REQUIRE(dijkstra.minDist(2001, 3043) == std::numeric_limits<double>::max());
 ```
 
 ## IDDFS
-Output and correctness of IDDFS
-Summarize, visualize, or highlight full-scale run of algorithm
-Describe tests used to confirm algorithm worked as intended
+We use IDDFS to determine whether it was possible to reach from one airport to another within the number of flights defined by the user. The user inputs the destination airport OpenFlights ID, the source airport OpenFlights ID, and the number of flights they want to take to reach their destination. We implement IDDFS by running a loop until the depth/number of flights and check each neighbor until the source node is found/not found. 
 
+When we first implemented the algorithm, IDDFS was running slower than the desired runtime; hoever, we pinpointed the problem to the fact that with each iteration of the depth, the algorithm was restarting at the root. Our runtime significantly improved after we handled that error by making sure the algorithm restarted at the last explored node.
 
-"All project goals are met and: There are clear descriptions, figures, or tables of each method's output on the full target dataset. (Note: Figures can be stored as plain images in your git repo and the link provided in the .md) There is a written discussion of the projects findings that makes and proves a claim that each method was successful. 
+We verified the correctness of IDDFS through local test cases stated below. We formulated these test cases by looking at the dataset, specifically routes.dat, and checking whether a direct or non-direct flight exists between two airports. If it was the latter, we determined how many flights it should take to reach from the source airport to the destination airport by looking at routes and then corroborated our calculations with the IDDFS output. We checked for three cases within our test case:
 
+1. We checked if the program outputs false if a depth of 0 (which signifies that no number of flights were defined) is inputted. This test case was used mainly to test the functionality of our algorithm rather than user input. In reality, the user is restricted from inputting 0 in main and can only input a minimum value of 1.
+
+```C++
+ REQUIRE_FALSE(iddfs.runIDDFS(3093, 3043, 0));
+ ```
+ 
+ 2. We checked if an airport can be reached from another airport within one flight i.e. a direct flight. This would be possible if the flight is defined in routes.dat. We also checked if a direct flight is not possible i.e. the depth is greater than 1. This would only be possible if the flight is not defined in routes.dat and if that is the case, the program returns false.
+
+```C++
+ // Kolkata is directly reachable from Delhi
+    REQUIRE(iddfs.runIDDFS(3093, 3043, 1));
+ // Keflavík is not directly reachable from Dar es Salaam
+    REQUIRE_FALSE(iddfs.runIDDFS(1177, 16, 1));
+```
+
+3. We checked if an airport is reachable from another airport using two flights i.e. with one stopover. This would be possible if the two airports share a similar neighbor i.e. the stopover airport has an edge in the graph with the source and destination airport. For the result to be true, the user has to input >=2 number of flights otherwise the program will output false.
+
+```C++
+    //Kochi is not directly reachable from Multan
+    REQUIRE_FALSE(iddfs.runIDDFS(2214, 3136, 1));
+    //Kochi is reachable from Multan with one stopover (e.g. Dubai)
+    REQUIRE(iddfs.runIDDFS(2214, 3136, 2));
+```
 

@@ -26,6 +26,8 @@ string DFS::getAirportIdFromIndex(int index) {
 
 bool DFS::detect_cycle(vector<string> airportIds) {
 
+    makeGraph mkg;
+    mkg.populateGraph();
     queue<string> dfs;
     dfs.push(airportIds[0]);
     map<string, bool> visited;
@@ -36,9 +38,6 @@ bool DFS::detect_cycle(vector<string> airportIds) {
         dfs.pop();
 
         int id = std::stoi(airportId);
-
-        makeGraph mkg;
-        mkg.populateGraph();
 
         vector<int> neighborsIdx = mkg.getNeighbors(id);
 

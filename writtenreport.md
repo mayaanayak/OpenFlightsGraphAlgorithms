@@ -114,3 +114,6 @@ We verified the correctness of IDDFS through local test cases stated below. We f
     REQUIRE(iddfs.runIDDFS(2214, 3136, 2));
 ```
 
+## Final Thoughts
+
+This project provided us insight into a very important and upcoming field, data science. Cleaning the raw data is an essential part of data science and these skills would be quite valuable in our future endeavors. Furthermore, this project provided us cognizance of how algorithms and graphs are used in real world applications as most of the work we had done till now was theoretical. Overall all of our algorithms worked in the manner we intended them too. I believe we could have improved the runtime efficiency for DFS, but overall it worked within the limits we had proscribed. Furthermore, we could have also implemented an adjacency list rather than an adjacency matrix to store our graph; however, we got around that by creating an unordered map of the neighbors. One thing we can look towards adding in the future is figuring out the shortest possible flight plan from one airport to another. This can be done using a combination of Djikstra and IDDFS or finding another suitable algorithm.

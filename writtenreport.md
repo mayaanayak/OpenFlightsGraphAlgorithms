@@ -1,9 +1,7 @@
 # harsha4-saraza2-kushal2-mayan3 Final Project
 
 ## Leading Question
-Answer to leading question
-How did you answer question?
-What did you discover?
+When we started this project our leading question was whether we can utilize this dataset and the algorithms provided to find the shortest possible path between two airports, if it is possible to travel between two airports within a certain number of flights, and if given three or more airports is it possible to visit an airport more than once. We approached these questions by creating an adjacency matrix undirected weighted graph, with the airports as vertices and distance between connected airports as the edges, and an unordered map of neighbors of each vertex. We then implemented the Djikstra, IDDFS and DFS algorithm on the graph to get the answers to our questions. Overall, we were successful in implementing our project while simultaneously discovering how important graphs are in representing datasets and the most efficient methods to extract useful data from them.
 
 ## DFS
 We employ DFS to determine that given three or more airports, is it possible to visit an airport more than once. This can in fact be used to determine if a round trip exists between two airports, which might in fact help users plan a trip. 
